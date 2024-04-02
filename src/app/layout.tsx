@@ -4,6 +4,7 @@ import "./globals.css";
 import { SearchProvider } from "@/context/Searchcontext";
 import GlobalSearch from "@/components/shared/GlobalSearch";
 import Nav from "@/components/shared/Nav";
+import SideNavigation from "@/components/shared/SideNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,9 +27,12 @@ export default function RootLayout({
               <Nav />
               <GlobalSearch />
             </SearchProvider>
-            <div className="px-4 sm:px-8 py-6 pt-1 max-w-6xl mx-auto">
-              {children}
-            </div>
+            <main className={`w-full flex flex-row relative`} style={{ height: 'calc(100vh - 82px)' }}>
+              <SideNavigation />
+              <div className="w-full">
+                {children}
+              </div>
+            </main>
           </div>
           {/* <Footer/> */}
         </div>

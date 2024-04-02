@@ -5,7 +5,8 @@ import { Menu, Transition } from "@headlessui/react";
 import localFont from "next/font/local";
 import Image from "next/image";
 import SearchIcon from "@heroicons/react/outline/SearchIcon";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useSearch } from "@/context/Searchcontext";
 // Font files can be colocated inside of `pages`
 const satoshi = localFont({
   src: "../../../public/assets/fonts/Satoshi-Bold.otf",
@@ -22,6 +23,8 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 const Nav = () => {
+  const { setSearchOpen } = useSearch();
+
   return (
     <div
       className={`max-w-screen w-full bg-[#252525]  h-[82px] lg:px-16 flex flex-row items-center justify-between`}
@@ -49,6 +52,7 @@ const Nav = () => {
               className="block w-full  border border-[#555555] rounded-md py-2 pl-10 pr-3 text-sm bg-[#1A1A1A] sm:text-sm placeholder-[#A0A0A0] "
               placeholder="Search Secure Passwords (⌘K)"
               type="search"
+              onFocus={() => setSearchOpen(true)}
             />
           </div>
         </div>
