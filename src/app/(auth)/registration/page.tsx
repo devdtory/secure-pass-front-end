@@ -1,9 +1,18 @@
+'use client'
 import { PrimaryButton, TertiaryButton } from "@/components/shared/Buttons";
+import { AuthContext } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { redirect } from "next/navigation";
+import React, { useContext, useEffect } from "react";
 
 const page = () => {
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  useEffect(() => {
+    if (isAuthenticated) {
+      return redirect("/");
+    }
+  }, [isAuthenticated]);
   return (
     <div className="w-full h-screen max-h screen max-w-screen bg-[#EFEFEF] flex ">
       <div className="h-full w-1/2 flex-1/2 bg-[#DFE6E2] flex-col flex justify-between items-start p-16 pb-36">
@@ -37,7 +46,10 @@ const page = () => {
             Register an account
           </h3>
           <form
-            action=""
+            onSubmit={(e) => {
+              e.preventDefault();
+              setIsAuthenticated(true);
+            }}
             className="w-[90%] flex flex-col items-start justify-center gap-y-3 "
           >
             <input
