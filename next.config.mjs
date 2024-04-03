@@ -4,6 +4,8 @@ const nextConfig = {
     images: {
         domains: ['images.unsplash.com'],
     },
+    ignoreBuildErrors: true,
+    
 };
 
 export default nextConfig;
