@@ -1,8 +1,10 @@
 "use client";
-import { motion, useAnimationControls, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { defaultFAQs } from "@/utils/constants/navigation";
+import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Disclosure } from "./Accordion";
 
 const containerVariants = {
   close: {
@@ -14,7 +16,7 @@ const containerVariants = {
     },
   },
   open: {
-    width: "22rem",
+    width: "22.5rem",
     transition: {
       type: "spring",
       damping: 15,
@@ -60,22 +62,30 @@ const SideNavigation = () => {
         variants={containerVariants}
         animate={containerControls}
         initial="open"
-        className="bg-[#151515] flex flex-col z-10 gap-20 p-5 top-0 left-0 h-full shadow shadow-neutral-600 overflow-scroll"
+        className="bg-[#151515] flex flex-col z-10 gap-10 py-5 pt-12 top-0 left-0 h-full shadow shadow-neutral-600 overflow-scroll"
       >
-        <div className="flex flex-row w-full justify-between place-items-center">
-          <motion.div  className={`${isOpen ? 'flex':'hidden'} justify-start items-start duration-100 transition-all ease-in-out`}>
+        <div className="flex flex-row w-full justify-between place-items-center px-6">
+          <motion.div
+            className={`${
+              isOpen ? "flex" : "hidden"
+            } justify-start items-center duration-100 transition-all ease-in-out gap-x-4`}
+          >
             <Image
               src={"/assets/icons/rocket.svg"}
               alt="logo"
               width={20}
               height={20}
             />
-            <div className="flex-col px-2 gap-y-1 flex">
+            <div className="flex-col gap-y-1 flex">
               <p className="text-[16px] text-[#A0A0A0]">Getting Started</p>
               <div className="flex items-center justify-start gap-x-1">
                 {[1, 2, 3, 4, 5].map((item) => (
                   <>
-                    <div className={`w-[22px] h-[7px] bg-green-500 ${item === 1 && 'rounded-l-full'} ${item===5 && 'rounded-r-full'}`} />
+                    <div
+                      className={`w-[22px] h-[7px] bg-green-500 ${
+                        item === 1 && "rounded-l-full"
+                      } ${item === 5 && "rounded-r-full"}`}
+                    />
                   </>
                 ))}
               </div>
@@ -107,52 +117,10 @@ const SideNavigation = () => {
             </svg>
           </button>
         </div>
-        <div className="flex flex-col gap-3">
-          <NavigationLink name="Dashboard">
-            <Image
-              src={"/assets/icons/settings.svg"}
-              alt="settings"
-              width={28}
-              height={28}
-              className="cursor-pointer"
-            />
-          </NavigationLink>
-          <NavigationLink name="Projects">
-            <Image
-              src={"/assets/icons/settings.svg"}
-              alt="settings"
-              width={28}
-              height={28}
-              className="cursor-pointer"
-            />
-          </NavigationLink>
-          <NavigationLink name="Tasks">
-            <Image
-              src={"/assets/icons/settings.svg"}
-              alt="settings"
-              width={28}
-              height={28}
-              className="cursor-pointer"
-            />
-          </NavigationLink>
-          <NavigationLink name="Reporting">
-            <Image
-              src={"/assets/icons/settings.svg"}
-              alt="settings"
-              width={28}
-              height={28}
-              className="cursor-pointer"
-            />
-          </NavigationLink>
-          <NavigationLink name="Users">
-            <Image
-              src={"/assets/icons/settings.svg"}
-              alt="settings"
-              width={28}
-              height={28}
-              className="cursor-pointer"
-            />
-          </NavigationLink>
+        <div className="flex flex-col gap-y-5">
+          {defaultFAQs.map((faq, i) => (
+            <Disclosure key={i} title={faq.question} body={faq.answer} />
+          ))}
         </div>
       </motion.nav>
     </>
@@ -160,21 +128,3 @@ const SideNavigation = () => {
 };
 
 export default SideNavigation;
-interface NavigationLink {
-  children: React.ReactNode;
-  name: string;
-}
-
-const NavigationLink = ({ children, name }: NavigationLink) => {
-  return (
-    <Link
-      href="#"
-      className="flex p-1 rounded cursor-pointer stroke-[0.75] hover:stroke-neutral-100 stroke-neutral-400 text-neutral-400 hover:text-neutral-100 place-items-center gap-3 hover:bg-neutral-700/30 transition-colors duration-100"
-    >
-      {children}
-      <p className="text-inherit font-poppins overflow-clip whitespace-nowrap tracking-wide">
-        {name}
-      </p>
-    </Link>
-  );
-};
