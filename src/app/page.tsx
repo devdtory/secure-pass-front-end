@@ -1,21 +1,20 @@
 "use client";
 import Accounts from "@/components/settings/Accounts";
+import Appearance from "@/components/settings/Appearance";
 import EquivalentDomains from "@/components/settings/EquivalentDomains";
 import MFA from "@/components/settings/MFA";
 import NeverUrls from "@/components/settings/NeverUrls";
 import Security from "@/components/settings/Security";
 import TrustedDevices from "@/components/settings/TrustedDevices";
-import Appearance from "@/components/settings/appearance";
 import { Framer } from "@/components/settings/framer";
-import { Circle, Square, Triangle } from "@/components/settings/shapes";
 import { useTabs } from "@/components/settings/useTabs";
-import { PrimaryButton, SecondaryButton } from "@/components/shared/Buttons";
 import Heading from "@/components/shared/Heading";
 import RightPan from "@/components/shared/RightPan";
-import Image from "next/image";
+import ProtectedRoute from "@/utils/ProtectedRoutes";
+import isAuth from "@/utils/ProtectedRoutes";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
   const [hookProps] = useState({
@@ -76,26 +75,29 @@ export default function Home() {
     window.addEventListener("keydown", keyDownHandler);
   });
   return (
-    <>
-      <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
-        <Heading title="Settings" />
-        <div className="w-full  px-16">
-          <Framer.Tabs {...framer.tabProps} />
-          <Framer.Content
-            {...framer.contentProps}
-            className="text-center rounded-3xl py-9 flex flex-col items-center"
-          >
-            {framer.selectedTab.children}
-          </Framer.Content>
-        </div>
-      </main>
-      <RightPan
-        isOpen={isOpen}
-        title="Add a password"
-        onClose={closeRightPanel}
-      >
-        <div className="w-full h-full bg-fray-200"></div>
-      </RightPan>
-    </>
+    <ProtectedRoute>
+      <>
+        <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
+          <Heading title="Settings" />
+          <div className="w-full  px-16">
+            <Framer.Tabs {...framer.tabProps} />
+            <Framer.Content
+              {...framer.contentProps}
+              className="text-center rounded-3xl py-9 flex flex-col items-center"
+            >
+              {framer.selectedTab.children}
+            </Framer.Content>
+          </div>
+        </main>
+        <RightPan
+          isOpen={isOpen}
+          title="Add a password"
+          onClose={closeRightPanel}
+        >
+          <div className="w-full h-full bg-fray-200"></div>
+        </RightPan>
+      </>
+    </ProtectedRoute>
   );
 }
+export default Home;

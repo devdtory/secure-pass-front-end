@@ -1,14 +1,15 @@
+"use client";
 import React from "react";
 
-const PrimaryButton = ({ onClick, disabled, type, title, width }: any) => {
+const PrimaryButton = ({ onClick, disabled, type, title, width ,className}: any) => {
   return (
     <button
       onClick={onClick ?? (() => {})}
       disabled={disabled ?? false}
       type={type ?? "button"}
-      className={`bg-[#2ED370] dark:text-[#1A1A1A] text-[#EFEFEF] px-[32px] py-[8px] text-[16px] w-[${
-        width ?? "auto"
-      }] rounded-[5px] ${disabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+      className={`bg-[#2ED370] dark:text-[#1A1A1A] text-[#EFEFEF] px-[32px] py-[8px] text-[16px] ${
+        width ? `w-[${width}]`: "w-full"
+      } rounded-[5px] ${disabled ? "cursor-not-allowed" : "cursor-pointer"} ${className}`}
     >
       {title ?? "Button"}
     </button>
@@ -28,5 +29,19 @@ const SecondaryButton = ({ onClick, disabled, type, title, width }: any) => {
     </button>
   );
 };
-// const TertiaryButton = () => {}
-export { PrimaryButton,SecondaryButton };
+const TertiaryButton = ({ onClick, disabled, type, title, width}: any) => {
+  return (
+    <button
+      onClick={onClick ?? (() => {})}
+      disabled={disabled ?? false}
+      type={type ?? "button"}
+      className={`bg-[#20934E26] border-none text-[#20934E]  border-[1.5px]  px-[32px] py-[8px] text-[16px] w-[${
+        width ?? "auto"
+      }] rounded-[5px] ${disabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+    >
+      {title ?? "Button"}
+    </button>
+  );
+};
+
+export { PrimaryButton, SecondaryButton,TertiaryButton };

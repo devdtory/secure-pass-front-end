@@ -1,10 +1,8 @@
+import { AuthProvider } from "@/context/AuthContext";
+import NavigationLayout from "@/utils/NavigationLayout";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SearchProvider } from "@/context/Searchcontext";
-import GlobalSearch from "@/components/shared/GlobalSearch";
-import Nav from "@/components/shared/Nav";
-import SideNavigation from "@/components/shared/SideNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,21 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen flex justify-between flex-col bg-white dark">
-          <div className="">
-            <SearchProvider>
-              <Nav />
-              <GlobalSearch />
-            </SearchProvider>
-            <main className={`w-full flex flex-row relative`} style={{ height: 'calc(100vh - 82px)' }}>
-              <SideNavigation />
-              <div className="w-full">
-                {children}
-              </div>
-            </main>
+        <AuthProvider>
+          <div className="min-h-screen flex justify-between flex-col bg-white dark">
+            <NavigationLayout>{children}</NavigationLayout>
+            {/* <Footer/> */}
           </div>
-          {/* <Footer/> */}
-        </div>
+        </AuthProvider>
       </body>
     </html>
   );

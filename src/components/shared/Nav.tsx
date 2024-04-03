@@ -5,8 +5,11 @@ import { Menu, Transition } from "@headlessui/react";
 import localFont from "next/font/local";
 import Image from "next/image";
 import SearchIcon from "@heroicons/react/outline/SearchIcon";
-import { Fragment, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { useSearch } from "@/context/Searchcontext";
+import Link from "next/link";
+import { AuthContext } from "@/context/AuthContext";
+import { redirect } from "next/navigation";
 // Font files can be colocated inside of `pages`
 const satoshi = localFont({
   src: "../../../public/assets/fonts/Satoshi-Bold.otf",
@@ -25,6 +28,7 @@ const userNavigation = [
 const Nav = () => {
   const { setSearchOpen } = useSearch();
 
+  const { setIsAuthenticated } = useContext(AuthContext);
   return (
     <div
       className={`max-w-screen w-full bg-[#252525]  h-[82px] lg:px-16 flex flex-row items-center justify-between`}
@@ -105,17 +109,31 @@ const Nav = () => {
             <Menu.Items className="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none">
               {userNavigation.map((item) => (
                 <Menu.Item key={item.name}>
-                  {({ active }) => (
-                    <a
-                      href={item.href}
-                      className={classNames(
-                        active ? "bg-gray-100" : "",
-                        "block py-2 px-4 text-sm text-gray-700"
-                      )}
-                    >
-                      {item.name}
-                    </a>
-                  )}
+                  {({ active }) =>
+                    item.name === "Sign out" ? (
+                      <p
+                        onClick={() => {
+                          setIsAuthenticated(false);
+                        }}
+                        className={classNames(
+                          active ? "bg-gray-100" : "",
+                          "block py-2 px-4 text-sm text-gray-700"
+                        )}
+                      >
+                        {item.name}
+                      </p>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={classNames(
+                          active ? "bg-gray-100" : "",
+                          "block py-2 px-4 text-sm text-gray-700"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    )
+                  }
                 </Menu.Item>
               ))}
             </Menu.Items>
