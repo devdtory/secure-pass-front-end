@@ -51,7 +51,6 @@ const page = () => {
             Sign in to SecurePasswords
           </h3>
           <form
-            action=""
             onSubmit={(e) => {
               e.preventDefault();
               setIsAuthenticated(true);
