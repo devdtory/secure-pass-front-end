@@ -25,7 +25,7 @@ export const Disclosure = (props: Props) => {
       >
         <div className="flex justify-start items-center py-1">
           
-          <div className={`text-[14px] font-extrabold text-[#666666] uppercase ${satoshi.className} tracking-wider`}>{props.title}</div>
+          <div className={`text-[14px] font-extrabold text-[#666666] uppercase font-generalSans tracking-wider`}>{props.title}</div>
         </div>
         <AnimatePresence initial={false} mode="wait">
           <motion.div
