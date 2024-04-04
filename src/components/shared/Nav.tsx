@@ -75,13 +75,15 @@ const Nav = () => {
             }}
             className="cursor-pointer"
           />
-          <Image
-            src={"/assets/icons/settings.svg"}
-            alt="settings"
-            width={28}
-            height={28}
-            className="cursor-pointer"
-          />
+          <Link href="/settings">
+            <Image
+              src={"/assets/icons/settings.svg"}
+              alt="settings"
+              width={28}
+              height={28}
+              className="cursor-pointer"
+            />
+          </Link>
 
           <Menu as="div" className="flex-shrink-0 relative">
             <div>
