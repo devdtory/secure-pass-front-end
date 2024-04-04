@@ -31,34 +31,29 @@ function page() {
     <ProtectedRoute>
       <>
         {passwords?.length > 0 ? (
-          <></>
-        ) : (
-          <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
+          <>
             <Heading
-              title="All Items"
+              title="Personal Info"
               rightContent={
                 <div className="flex items-center justify-end gap-x-6">
                   <PrimaryButton
-                    title="Add Items"
+                    title="Add Personal Info"
                     onClick={openRightPanel}
-                    minWidth={"154px"}
-                  />
-                  <SecondaryButton
-                    title="Import Items"
-                    onClick={openRightPanel}
-                    minWidth={"154px"}
+                    minWidth={"180px"}
                   />
                 </div>
               }
             />
+          </>
+        ) : (
+          <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
             <EmptySection
-              title="Let's get Started"
-              description="Add your first item. You will find it here
-              whenever you need it"
-              icon="/assets/icons/password-home.svg"
-              primaryButton={{ title: "Add Items", onClick: openRightPanel }}
-              secondaryButton={{
-                title: "Import Items",
+              bgImage="/assets/icons/empty/bg-personal-info.svg"
+              title="Fill forms online stress-free"
+              description="Jot down a Wi-Fi code, office security alarm code or your friend's birthday"
+              icon="/assets/icons/empty/personal-info.svg"
+              primaryButton={{
+                title: "Add Personal Info",
                 onClick: openRightPanel,
               }}
             />
@@ -67,7 +62,7 @@ function page() {
 
         <RightPan
           isOpen={isOpen}
-          title="Add Items"
+          title="Add a password"
           onClose={closeRightPanel}
         >
           <div className="w-full h-full bg-fray-200"></div>

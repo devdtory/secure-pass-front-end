@@ -31,35 +31,16 @@ function page() {
     <ProtectedRoute>
       <>
         {passwords?.length > 0 ? (
-          <></>
+          <>
+            <Heading title="Trash" rightContent={<></>} />
+          </>
         ) : (
           <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
-            <Heading
-              title="Passwords"
-              rightContent={
-                <div className="flex items-center justify-end gap-x-6">
-                  <PrimaryButton
-                    title="Add Passwords"
-                    onClick={openRightPanel}
-                    minWidth={"154px"}
-                  />
-                  <SecondaryButton
-                    title="Import Passwords"
-                    onClick={openRightPanel}
-                    minWidth={"154px"}
-                  />
-                </div>
-              }
-            />
             <EmptySection
-              title="Forget Password Resets"
-              description="Add your passwords. You will find it here whenever you need it"
-              icon="/assets/icons/password-home.svg"
-              primaryButton={{ title: "Add Password", onClick: openRightPanel }}
-              secondaryButton={{
-                title: "Import Passwords",
-                onClick: openRightPanel,
-              }}
+              bgImage="/assets/icons/empty/bg-trash.svg"
+              title="Trash is empty"
+              description="Any items moved to trash can be restored until you permanently delete them."
+              icon="/assets/icons/empty/trash.svg"
             />
           </main>
         )}
