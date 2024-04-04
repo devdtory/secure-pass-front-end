@@ -16,7 +16,7 @@ const containerVariants = {
     },
   },
   open: {
-    width: "22.5rem",
+    width: "20.5rem",
     transition: {
       type: "spring",
       damping: 15,
@@ -62,7 +62,7 @@ const SideNavigation = () => {
         variants={containerVariants}
         animate={containerControls}
         initial="open"
-        className={`bg-[#151515] flex flex-col z-10 gap-10 py-5 pt-12 top-0 left-0 h-full shadow shadow-neutral-600 overflow-scroll min-w-[22.5rem] ${isOpen ? "min-w-[20.5rem]" : "min-w-[2rem]"}`}
+        className={`bg-[#151515] flex flex-col z-10 gap-10 py-5 pt-12 top-0 left-0 h-full shadow shadow-neutral-600 overflow-y-scroll `}
       >
         <div className="flex flex-row w-full justify-between place-items-center px-6">
           <motion.div

@@ -24,7 +24,7 @@ const NavigationLayout = ({ children }: { children: React.ReactNode }) => {
           >
             <SideNavigation />
             <div className="flex-1"
-             style={{ maxWidth: "calc(100vw - 22.5rem)" }}
+             style={{ maxWidth: "calc(100vw - 20.5rem)" }}
             >{children}</div>
           </main>
         </div>
