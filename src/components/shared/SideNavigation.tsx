@@ -62,7 +62,7 @@ const SideNavigation = () => {
         variants={containerVariants}
         animate={containerControls}
         initial="open"
-        className="bg-[#151515] flex flex-col z-10 gap-10 py-5 pt-12 top-0 left-0 h-full shadow shadow-neutral-600 overflow-scroll"
+        className={`bg-[#151515] flex flex-col z-10 gap-10 py-5 pt-12 top-0 left-0 h-full shadow shadow-neutral-600 overflow-scroll min-w-[22.5rem] ${isOpen ? "min-w-[20.5rem]" : "min-w-[2rem]"}`}
       >
         <div className="flex flex-row w-full justify-between place-items-center px-6">
           <motion.div
@@ -91,7 +91,7 @@ const SideNavigation = () => {
               </div>
             </div>
           </motion.div>
-          <button
+          {/* <button
             className="p-1 rounded-full flex"
             onClick={() => handleOpenClose()}
           >
@@ -115,7 +115,7 @@ const SideNavigation = () => {
                 }}
               />
             </svg>
-          </button>
+          </button> */}
         </div>
         <div className="flex flex-col gap-y-5">
           {defaultFAQs.map((faq, i) => (

@@ -11,7 +11,9 @@ const NavigationLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {isAuthenticated ? (
-        <div className="">
+        <div className="flex-1"
+       
+        >
           <SearchProvider>
             <Nav />
             <GlobalSearch />
@@ -21,7 +23,9 @@ const NavigationLayout = ({ children }: { children: React.ReactNode }) => {
             style={{ height: "calc(100vh - 82px)" }}
           >
             <SideNavigation />
-            <div className="w-full">{children}</div>
+            <div className="flex-1"
+             style={{ maxWidth: "calc(100vw - 22.5rem)" }}
+            >{children}</div>
           </main>
         </div>
       ) : (

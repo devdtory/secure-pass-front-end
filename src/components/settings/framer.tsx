@@ -42,7 +42,7 @@ const Tabs = ({
   return (
     <nav
       ref={navRef}
-      className="flex flex-shrink-0 justify-start w-full items-center relative z-0 py-2 overflow-x-scroll gap-x-[50px]"
+      className="flex flex-shrink-0 justify-start w-full items-center relative z-0 py-2 overflow-x-scroll gap-x-[55px]"
       onPointerLeave={(e) => setHoveredTabIndex(null)}
     >
       {tabs.map((item, i) => {
@@ -50,13 +50,13 @@ const Tabs = ({
           <motion.button
             key={i}
             className={classNames(
-              `text-[16px] text-center relative rounded-md flex items-center h-8 px-4 z-20 bg-transparent text-sm text-[#A0A0A0] cursor-pointer select-none transition-colors`,
+              `text-[16px] text-center w-fit flex-shrink-0  relative rounded-md flex items-center h-8  z-20 bg-transparent text-[#A0A0A0] cursor-pointer select-none transition-colors`,
 
               hoveredTabIndex === i || selectedTabIndex === i
                 ? "text-[#EFEFEF]"
                 : "text-[#A0A0A0]"
             )}
-            ref={(el) => (buttonRefs[i] = el ?? null)}
+            ref={(el: any) => (buttonRefs[i] = el)}
             onPointerEnter={() => {
               setHoveredTabIndex(i);
             }}
@@ -76,8 +76,8 @@ const Tabs = ({
           className={"absolute z-10 bottom-0 left-0 h-[2px] bg-slate-500"}
           initial={false}
           animate={{
-            width: selectedRect.width * 0.8,
-            x: `calc(${selectedRect.left - navRect.left}px + 10%)`,
+            width: selectedRect.width * 1,
+            x: `calc(${selectedRect.left - navRect.left}px + 0%)`,
             opacity: 1,
           }}
           transition={transition}
