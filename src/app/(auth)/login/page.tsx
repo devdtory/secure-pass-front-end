@@ -27,11 +27,11 @@ const page = () => {
           width={60}
           height={60}
         />
-        <div className="flex flex-col justify-start items-start">
-          <h1 className="text-[64px] leading-[80px] text-[#252525] font-bold pb-4">
+        <div className="flex flex-col justify-start items-start w-full">
+          <p className="text-[32px] leading-[48px] text-[#252525] font-bold pb-4 lg:text-[48px] lg:leading-[64px] xl:text-[64px] xl:leading-[80px]">
             Welcome to SecurePasswords
-          </h1>
-          <p className="text-[16px] leading-[24px] w-[60%] text-[#666666] font-[500]">
+          </p>
+          <p className="text-[16px] leading-[24px] w-full md:w-[60%] text-[#666666] font-[500]">
             Access your passwords & personal data in the web app - quickly and
             securely.
           </p>
@@ -39,7 +39,7 @@ const page = () => {
       </div>
       <div className="h-full flex-1/2 p-12 px-16 flex flex-col justify-between items-end w-1/2">
         <div className="flex justify-end items-center gap-6 w-full">
-          <p className="text-[16px] text-[#666666] tracking-wide">
+          <p className="text-[16px] text-[#666666] ">
             New around here ?
           </p>
           <Link href="/registration">
@@ -47,7 +47,7 @@ const page = () => {
           </Link>
         </div>
         <div className="flex flex-1 w-full justify-center items-start flex-col gap-y-2">
-          <h3 className="text-[24px] font-bold -tracking-tight text-[#252525]">
+          <h3 className="text-[24px] font-bold  text-[#252525]">
             Sign in to SecurePasswords
           </h3>
           <form
@@ -60,12 +60,12 @@ const page = () => {
             <input
               type="text"
               placeholder="Email Address"
-              className="w-full bg-transparent text-[#666666] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none focus:ring-0 border-[1.5px] border-[#666666]"
+              className="w-full h-[69px] bg-transparent text-[#666666] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none focus:ring-0 border-[2px] border-[#666666]"
             />
             <input
               type="password"
               placeholder="Master Password"
-              className="w-full bg-transparent text-[#666666] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none focus:ring-0 border-[1.5px] border-[#666666]"
+              className="w-full h-[69px] bg-transparent text-[#666666] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none focus:ring-0 border-[2px] border-[#666666]"
             />
             <div className="flex items-center justify-start w-full mt-0 gap-x-2">
               <input
@@ -74,7 +74,7 @@ const page = () => {
                 id=""
                 className="focus:ring-0 focus:outline-none border-[#666666] rounded-[3px] bg-transparent checked:bg-[#666666] focus:bg-[#666666]"
               />
-              <p className="text-[16px] text-[#727272] tracking-wide">
+              <p className="text-[16px] text-[#727272] ">
                 Remember me
               </p>
             </div>
@@ -82,7 +82,7 @@ const page = () => {
           </form>
           <p className="text-[#666666] text-[16px]">Forgot Password?</p>
         </div>
-        <p className="text-[16px] text-[#666666] tracking-wide">
+        <p className="text-[16px] text-[#666666] ">
           Version 2024.1.0
         </p>
       </div>
