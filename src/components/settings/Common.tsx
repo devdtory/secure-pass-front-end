@@ -36,7 +36,7 @@ const RowItem = ({
   return (
     <div className="border-[2px] border-[#5A5A5A] flex justify-between items-center px-[24px] rounded-md min-h-[69px] w-full">
       <div className="flex items-center justify-start">
-        <p className="text-[13px] leading-[16px] text-[#A0A0A0] font-500 min-w-[200px] text-left">
+        <p className="text-[13px] leading-[16px] text-[#A0A0A0] font-500 min-w-[210px] text-left">
           {title}
         </p>
         {middleText && (
