@@ -84,7 +84,6 @@ function page() {
                     </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
-                    value="right"
                     align="end"
                     className="bg-[#252525] w-[300px] border-none rounded-[5px] text-[14px] text-[#EFEFEF]"
                   >
