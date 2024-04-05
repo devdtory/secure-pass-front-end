@@ -25,7 +25,7 @@ const RightPan = ({
     >
       {isOpen && (
         <motion.div
-          {...slideAnimation("right")}
+          {...slideAnimation("right",0)}
           className="h-full flex flex-col justify-start items-start w-[400px] bg-[#202020] ml-auto"
         >
           <div className="flex justify-between items-center  w-full   py-6 px-4">

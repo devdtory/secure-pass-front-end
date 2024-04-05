@@ -1,5 +1,6 @@
 "use client";
 import { PrimaryButton, SecondaryButton } from "@/components/shared/Buttons";
+import { DataTable } from "@/components/shared/CustomTable";
 import EmptySection from "@/components/shared/EmptyPage";
 import Heading from "@/components/shared/Heading";
 import RightPan from "@/components/shared/RightPan";
@@ -30,27 +31,33 @@ function page() {
   return (
     <ProtectedRoute>
       <>
-        {passwords?.length > 0 ? (
-          <></>
+        {passwords?.length === 0 ? (
+          <>
+            <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
+              <Heading
+                title="Passwords"
+                rightContent={
+                  <div className="flex items-center justify-end gap-x-6">
+                    <PrimaryButton
+                      title="Add Passwords"
+                      onClick={openRightPanel}
+                      minWidth={"154px"}
+                    />
+                    <SecondaryButton
+                      title="Import Passwords"
+                      onClick={openRightPanel}
+                      minWidth={"154px"}
+                    />
+                  </div>
+                }
+              />
+              <div className="w-full px-16 py-5">
+                <DataTable />
+              </div>
+            </main>
+          </>
         ) : (
           <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
-            <Heading
-              title="Passwords"
-              rightContent={
-                <div className="flex items-center justify-end gap-x-6">
-                  <PrimaryButton
-                    title="Add Passwords"
-                    onClick={openRightPanel}
-                    minWidth={"154px"}
-                  />
-                  <SecondaryButton
-                    title="Import Passwords"
-                    onClick={openRightPanel}
-                    minWidth={"154px"}
-                  />
-                </div>
-              }
-            />
             <EmptySection
               bgImage="/assets/icons/empty/bg-password.svg"
               title="Forget Password Resets"
