@@ -12,12 +12,14 @@ const Heading = ({ title }: { title: string }) => {
 const Section = ({
   title,
   children,
+  bgTransparent = false,
 }: {
   title: string;
   children: React.ReactNode;
+  bgTransparent?: boolean;
 }) => {
   return (
-    <div className="w-full bg-[#151515] rounded-[12px] p-[24px]">
+    <div className={`w-full ${bgTransparent ? 'bg-transparent':'bg-[#151515]'}  rounded-[12px] p-[24px]`}>
       <Heading title={title} />
       {children}
     </div>

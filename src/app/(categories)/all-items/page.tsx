@@ -34,7 +34,7 @@ function page() {
           <></>
         ) : (
           <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
-            <Heading
+            {/* <Heading
               title="All Items"
               rightContent={
                 <div className="flex items-center justify-end gap-x-6">
@@ -50,7 +50,7 @@ function page() {
                   />
                 </div>
               }
-            />
+            /> */}
             <EmptySection
               title="Let's get Started"
               description="Add your first item. You will find it here
