@@ -24,7 +24,7 @@ const EmptySection = ({
   description: string;
   bgImage: string;
 }) => {
-  const [width, setWidth] = React.useState(window?.innerWidth);
+  const [width, setWidth] = React.useState(1024);
   const breakpoint = 1024;
   React.useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
