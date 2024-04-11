@@ -1,4 +1,5 @@
 "use client";
+import Form from "@/components/credit-card/Form";
 import { PrimaryButton, SecondaryButton } from "@/components/shared/Buttons";
 import EmptySection from "@/components/shared/EmptyPage";
 import Heading from "@/components/shared/Heading";
@@ -9,7 +10,9 @@ import { useEffect, useState } from "react";
 function page() {
   const [isOpen, setIsOpen] = useState(false);
   const [passwords, setPasswords] = useState([]);
-  
+  const [width, setWidth] = useState(1024);
+  const breakpoint = 768;
+
   const openRightPanel = () => {
     setIsOpen(true);
   };
@@ -38,6 +41,7 @@ function page() {
         ) : (
           <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
             <EmptySection
+
               bgImage="/assets/icons/empty/bg-credit-card.svg"
               title="Fill forms online stress-free"
               description="Jot down a Wi-Fi code, office security alarm code or your friend's birthday"
@@ -52,10 +56,15 @@ function page() {
 
         <RightPan
           isOpen={isOpen}
-          title="Add a password"
+          title="Add Credit Card"
           onClose={closeRightPanel}
+          width="34.0625rem"
         >
-          <div className="w-full h-full bg-fray-200"></div>
+          <Form
+            closeRightPanel={closeRightPanel}
+            width={width}
+            breakpoint={breakpoint}
+          />
         </RightPan>
       </>
     </ProtectedRoute>

@@ -27,7 +27,11 @@ const EmptySection = ({
   const [width, setWidth] = React.useState(1024);
   const breakpoint = 1024;
   React.useEffect(() => {
-    const handleResizeWindow = () => setWidth(window.innerWidth);
+    const handleResizeWindow = () => {
+      setWidth(window.innerWidth);
+      console.log("width", window.innerWidth);
+      console.log("breakpoint", breakpoint);
+    }
     // subscribe to window resize event "onComponentDidMount"
     window.addEventListener("resize", handleResizeWindow);
     return () => {
