@@ -23,7 +23,7 @@ export const Disclosure = (props: Props) => {
       >
         <div className="flex justify-start items-center py-1">
           <div
-            className={`text-[14px] font-extrabold text-[#666666] uppercase font-generalSans tracking-[10%]`}
+            className={`text-[14px] font-extrabold text-[#666666] uppercase font-generalSans tracking-[0.075rem]`}
           >
             {props.title}
           </div>
