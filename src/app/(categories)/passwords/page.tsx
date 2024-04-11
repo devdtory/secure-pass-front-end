@@ -1,15 +1,19 @@
 "use client";
+import Form from "@/components/add-passwords/Form";
 import { PrimaryButton, SecondaryButton } from "@/components/shared/Buttons";
 import { DataTable } from "@/components/shared/CustomTable";
 import EmptySection from "@/components/shared/EmptyPage";
 import Heading from "@/components/shared/Heading";
 import RightPan from "@/components/shared/RightPan";
 import ProtectedRoute from "@/utils/ProtectedRoutes";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 function page() {
   const [isOpen, setIsOpen] = useState(false);
   const [passwords, setPasswords] = useState([]);
+  const [width, setWidth] = useState(1024);
+  const breakpoint = 1024;
   const keyDownHandler = (event: KeyboardEvent) => {
     event.preventDefault();
     if (event.ctrlKey && event.key === "k") {
@@ -28,6 +32,15 @@ function page() {
       window.removeEventListener("keydown", keyDownHandler);
     };
   });
+  useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    // subscribe to window resize event "onComponentDidMount"
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
   return (
     <ProtectedRoute>
       <>
@@ -76,8 +89,13 @@ function page() {
           isOpen={isOpen}
           title="Add a password"
           onClose={closeRightPanel}
+          width="34.0625rem"
         >
-          <div className="w-full h-full bg-fray-200"></div>
+          <Form
+            closeRightPanel={closeRightPanel}
+            width={width}
+            breakpoint={breakpoint}
+          />
         </RightPan>
       </>
     </ProtectedRoute>

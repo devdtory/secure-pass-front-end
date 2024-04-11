@@ -8,11 +8,13 @@ const RightPan = ({
   isOpen,
   onClose,
   title,
+  width = "400px",
 }: {
   children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  width?: string;
 }) => {
   return (
     <motion.div
@@ -25,11 +27,13 @@ const RightPan = ({
     >
       {isOpen && (
         <motion.div
-          {...slideAnimation("right",0)}
-          className="h-full flex flex-col justify-start items-start w-[400px] bg-[#202020] ml-auto"
+          style={{ width: width }}
+          {...slideAnimation("right", 0)}
+          onClick={(e) => e.stopPropagation()}
+          className="h-full flex flex-col justify-start items-start  bg-[#202020] ml-auto"
         >
-          <div className="flex justify-between items-center  w-full   py-6 px-4">
-            <p className="font-[700] text-[24px]">{title}</p>
+          <div className="flex justify-between items-center  w-full  py-[2.62rem] px-[2rem] border-b-[0.0625rem] border-b-[#5A5A5A]">
+            <p className="font-[700] text-[1.5rem] ">{title}</p>
             <button onClick={onClose}>
               <Image
                 src={"/assets/icons/cross.svg"}
