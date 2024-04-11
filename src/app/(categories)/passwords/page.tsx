@@ -14,24 +14,14 @@ function page() {
   const [passwords, setPasswords] = useState([]);
   const [width, setWidth] = useState(1024);
   const breakpoint = 1024;
-  const keyDownHandler = (event: KeyboardEvent) => {
-    event.preventDefault();
-    if (event.ctrlKey && event.key === "k") {
-      console.log("You just pressed Control and K!");
-    }
-  };
+  
   const openRightPanel = () => {
     setIsOpen(true);
   };
   const closeRightPanel = () => {
     setIsOpen(false);
   };
-  useEffect(() => {
-    window.addEventListener("keydown", keyDownHandler);
-    return () => {
-      window.removeEventListener("keydown", keyDownHandler);
-    };
-  });
+
   useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
     // subscribe to window resize event "onComponentDidMount"

@@ -118,7 +118,14 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
         </div>
       </div>
       <div className="flex justify-end gap-x-[0.5rem] py-[1rem] items-center w-full bg-[#202020] sticky bottom-0">
-        <PrimaryButton title="Save" onClick={() => {}} minWidth={"7.5rem"} />
+        <PrimaryButton
+          title="Save"
+          onClick={() => {
+            alert("Form submitted");
+            closeRightPanel();
+          }}
+          minWidth={"7.5rem"}
+        />
         <SecondaryButton
           title="Cancel"
           onClick={closeRightPanel}

@@ -59,12 +59,7 @@ function Settings() {
   });
   const framer = useTabs(hookProps);
 
-  const keyDownHandler = (event: KeyboardEvent) => {
-    event.preventDefault();
-    if (event.ctrlKey && event.key === "k") {
-      console.log("You just pressed Control and K!");
-    }
-  };
+  
   const openRightPanel = () => {
     setIsOpen(true);
   };

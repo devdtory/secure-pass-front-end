@@ -19,24 +19,14 @@ function page() {
   const [isOpen, setIsOpen] = useState(false);
   const [passwords, setPasswords] = useState([]);
   const [passwordLength, setPasswordLength] = useState(12);
-  const keyDownHandler = (event: KeyboardEvent) => {
-    event.preventDefault();
-    if (event.ctrlKey && event.key === "k") {
-      console.log("You just pressed Control and K!");
-    }
-  };
+  
   const openRightPanel = () => {
     setIsOpen(true);
   };
   const closeRightPanel = () => {
     setIsOpen(false);
   };
-  useEffect(() => {
-    window.addEventListener("keydown", keyDownHandler);
-    return () => {
-      window.removeEventListener("keydown", keyDownHandler);
-    };
-  });
+
   return (
     <ProtectedRoute>
       <>

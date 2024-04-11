@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import GlobalSearch from "@/components/shared/GlobalSearch";
 import Nav from "@/components/shared/Nav";
 import SideNavigation from "@/components/shared/SideNavigation";
@@ -11,9 +11,7 @@ const NavigationLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {isAuthenticated ? (
-        <div className="flex-1"
-       
-        >
+        <div className="flex-1">
           <SearchProvider>
             <Nav />
             <GlobalSearch />
@@ -23,9 +21,12 @@ const NavigationLayout = ({ children }: { children: React.ReactNode }) => {
             style={{ height: "calc(100vh - 82px)" }}
           >
             <SideNavigation />
-            <div className="flex-1"
-             style={{ maxWidth: "calc(100vw - 20.5rem)" }}
-            >{children}</div>
+            <div
+              className="flex-1"
+              style={{ maxWidth: "calc(100vw - 20.5rem)" }}
+            >
+              {children}
+            </div>
           </main>
         </div>
       ) : (

@@ -19,12 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <div className="min-h-screen flex justify-between flex-col bg-white dark">
+        <div className="min-h-screen flex justify-between flex-col bg-white dark">
+          <AuthProvider>
             <NavigationLayout>{children}</NavigationLayout>
-            {/* <Footer/> */}
-          </div>
-        </AuthProvider>
+          </AuthProvider>
+
+          {/* <Footer/> */}
+        </div>
       </body>
     </html>
   );

@@ -9,24 +9,14 @@ import { useEffect, useState } from "react";
 function page() {
   const [isOpen, setIsOpen] = useState(false);
   const [passwords, setPasswords] = useState([]);
-  const keyDownHandler = (event: KeyboardEvent) => {
-    event.preventDefault();
-    if (event.ctrlKey && event.key === "k") {
-      console.log("You just pressed Control and K!");
-    }
-  };
+  
   const openRightPanel = () => {
     setIsOpen(true);
   };
   const closeRightPanel = () => {
     setIsOpen(false);
   };
-  useEffect(() => {
-    window.addEventListener("keydown", keyDownHandler);
-    return () => {
-      window.removeEventListener("keydown", keyDownHandler);
-    };
-  });
+
   return (
     <ProtectedRoute>
       <>
@@ -55,7 +45,7 @@ function page() {
               title="Let's get Started"
               description="Add your first item. You will find it here
               whenever you need it"
-              icon="/assets/icons/password-home.svg"
+              icon="/assets/icons/all-items.svg"
               primaryButton={{ title: "Add Items", onClick: openRightPanel }}
               secondaryButton={{
                 title: "Import Items",

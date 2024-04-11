@@ -9,9 +9,9 @@ function Home() {
 
   const keyDownHandler = (event: KeyboardEvent) => {
     event.preventDefault();
-    if (event.ctrlKey && event.key === "k") {
-      console.log("You just pressed Control and K!");
-    }
+    // if (event.ctrlKey && event.key === "k") {
+    //   console.log("You just pressed Control and K!");
+    // }
   };
   const openRightPanel = () => {
     setIsOpen(true);
@@ -19,12 +19,7 @@ function Home() {
   const closeRightPanel = () => {
     setIsOpen(false);
   };
-  useEffect(() => {
-    window.addEventListener("keydown", keyDownHandler);
-    return () => {
-      window.removeEventListener("keydown", keyDownHandler);
-    };
-  });
+
   const gettingsStartedData = [
     {
       title: "Save first password or import passwords",
