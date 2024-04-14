@@ -8,7 +8,7 @@ const InputField = ({ id, label, ...props }) => {
         <input
           {...props}
           id={id}
-          required
+          
           className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 pt-[0.25rem] leading-[1.5rem] text-[#fff] placeholder:text-[#fff] peer"
         />
         <label

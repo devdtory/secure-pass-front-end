@@ -2,19 +2,18 @@
 import React from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
+import { InputField, PasswordField, TextAreaField } from "./InputField";
 
 const Form = ({ width, breakpoint, closeRightPanel }) => {
-  const [name, setName] = React.useState("aaa");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [website, setWebsite] = React.useState("");
-  const [folder, setFolder] = React.useState("");
-  const [note, setNote] = React.useState("");
+  const formRef = React.useRef<HTMLFormElement>(null);
   return (
     <form
+      ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Form submitted");
+        console.log("Form submitted", formRef.current?.elements["title"].value);
+        alert("Form submitted");
+        closeRightPanel();
       }}
       className="w-full h-full px-[2rem] overflow-y-scroll relative"
     >
@@ -34,98 +33,60 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
           height={width > breakpoint ? 45 : 30}
         />
       </div>
-      <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex flex-col justify-center items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem]">
-        <p className="text-[0.8125rem] font-[500] text-[#A0A0A0]">
-          Name<span className="text-[#F06868]"> *</span>
-        </p>
-        <input
-          className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#fff] placeholder:text-[#fff]"
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className="flex-col flex w-full gap-y-[2.5rem] py-[2.5rem]">
-        {/* login details */}
+
+      <div className="flex-col flex w-full gap-y-[2.5rem] ">
         <div className="w-full flex-col flex text-left gap-y-[1rem]">
-          <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
-            Login Details
-          </p>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex flex-col justify-center items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem]">
-            <p className="text-[0.8125rem] font-[500] text-[#A0A0A0]">
-              Email or username
-            </p>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#fff] placeholder:text-[#fff]"
-              type="email"
-              placeholder="johndoe@gmail.com"
+          <InputField
+            id="title"
+            name="title"
+            label="Title*"
+            type="text"
+            required
+          />
+          <InputField
+            id="cardholder_name"
+            name="cardholder_name"
+            label="Cardholder Name*"
+            type="text"
+            required
+          />
+          <InputField
+            id="card_number"
+            name="card_number"
+            label="Card Number*"
+            type="text"
+            required
+          />
+          <div className="w-full flex items-center gap-x-[1rem]">
+            <InputField
+              id="expiry_date"
+              name="expiry_date"
+              label="Expiration Date*"
+              type="date"
+              required
+              defaultValue="2022-01-01"
             />
-          </div>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex justify-start items-center border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <input
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
+            <InputField
+              id="cvv"
+              name="cvv"
+              label="CVV or CID"
               type="text"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <p className="text-[1rem] text-[#2ED370] flex justify-end items-center gap-x-[1rem] cursor-pointer">
-              Generate
-              <Image
-                src={"/assets/icons/eye.svg"}
-                width={24}
-                height={24}
-                alt="eye"
-              />
-            </p>
-          </div>
-        </div>
-        {/* Websites */}
-        <div className="w-full flex-col flex text-left gap-y-[1rem]">
-          <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
-            Websites
-          </p>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex justify-start items-center border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <input
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
-              type="text"
-              placeholder="Website URL"
+              required
             />
           </div>
         </div>
+
         {/* Other */}
         <div className="w-full flex-col flex text-left gap-y-[1rem]">
           <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
             Other
           </p>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex justify-start items-center border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <input
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
-              type="text"
-              placeholder="Folder"
-              name="folder"
-            />
-          </div>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[10.9375rem] flex justify-start items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <textarea
-              className="w-full resize-none h-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
-              placeholder="Note"
-            />
-          </div>
+          <InputField id="folder" name="folder" label="Folder" type="text" required/>
+          <TextAreaField id="note" name="note" label="Note" />
         </div>
       </div>
       <div className="flex justify-end gap-x-[0.5rem] py-[1rem] items-center w-full bg-[#202020] sticky bottom-0">
-        <PrimaryButton
-          title="Save"
-          onClick={() => {
-            alert("Form submitted");
-            closeRightPanel();
-          }}
-          minWidth={"7.5rem"}
-        />
+        <PrimaryButton title="Save" type="submit" minWidth={"7.5rem"} />
         <SecondaryButton
           title="Cancel"
           onClick={closeRightPanel}
