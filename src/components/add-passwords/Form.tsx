@@ -2,7 +2,7 @@
 import React from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
-import { InputField, PasswordField, TextAreaField } from "../credit-card/InputField";
+import { InputField, PasswordField, TextAreaField } from "../shared/InputField";
 
 const Form = ({ width, breakpoint, closeRightPanel }) => {
   const [name, setName] = React.useState("aaa");

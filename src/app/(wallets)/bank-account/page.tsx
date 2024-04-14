@@ -1,4 +1,5 @@
 "use client";
+import Form from "@/components/bank-account/Form";
 import { PrimaryButton, SecondaryButton } from "@/components/shared/Buttons";
 import EmptySection from "@/components/shared/EmptyPage";
 import Heading from "@/components/shared/Heading";
@@ -9,7 +10,9 @@ import { useEffect, useState } from "react";
 function page() {
   const [isOpen, setIsOpen] = useState(false);
   const [passwords, setPasswords] = useState([]);
-  
+  const [width, setWidth] = useState(1024);
+  const breakpoint = 768;
+
   const openRightPanel = () => {
     setIsOpen(true);
   };
@@ -50,12 +53,17 @@ function page() {
           </main>
         )}
 
-        <RightPan
+<RightPan
           isOpen={isOpen}
-          title="Add a password"
+          title="Add Credit Card"
           onClose={closeRightPanel}
+          width="34.0625rem"
         >
-          <div className="w-full h-full bg-fray-200"></div>
+          <Form
+            closeRightPanel={closeRightPanel}
+            width={width}
+            breakpoint={breakpoint}
+          />
         </RightPan>
       </>
     </ProtectedRoute>

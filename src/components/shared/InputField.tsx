@@ -60,7 +60,7 @@ const TextAreaField = ({ id, label, ...props }) => {
         />
         <label
           htmlFor={id}
-          className="transform transition-all absolute top-0 left-0 h-full flex items-center text-[1rem] group-focus-within:text-[0.8125rem] font-[500] text-[#A0A0A0] peer-valid:text-[0.8125rem] group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-1/3 peer-valid:-translate-y-1/3 group-focus-within:pl-0 peer-valid:pl-0"
+          className="transform transition-all absolute top-0 left-0 h-full flex items-start pt-[0.75rem] text-[1rem] group-focus-within:text-[0.8125rem] font-[500] text-[#A0A0A0] peer-valid:text-[0.8125rem] group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-1/3 peer-valid:-translate-y-1/3 group-focus-within:pl-0 peer-valid:pl-0"
         >
           {label}
         </label>

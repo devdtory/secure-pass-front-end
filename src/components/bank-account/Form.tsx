@@ -11,7 +11,7 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
       ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Form submitted", formRef.current?.elements["title"].value);
+        console.log("Form submitted", formRef.current?.elements);
         alert("Form submitted");
         closeRightPanel();
       }}
@@ -20,17 +20,17 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
       <div
         className="flex items-center mx-auto justify-center h-[75px] w-[75px] xl:h-[100px] xl:w-[100px] rounded-[30%] mt-[1.5rem] mb-[2.69rem]"
         style={{
-          backgroundImage: `url("./assets/icons/empty/bg-credit-card.svg")`,
+          backgroundImage: `url("./assets/icons/empty/bg-bank.svg")`,
           backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
         <Image
-          src={"/assets/icons/empty/credit-card.svg"}
+          src={"/assets/icons/empty/bank.svg"}
           alt="password-home"
-          width={width > breakpoint ? 45 : 30}
-          height={width > breakpoint ? 45 : 30}
+          width={width > breakpoint ? 45 : 35}
+          height={width > breakpoint ? 45 : 35}
         />
       </div>
 
@@ -44,36 +44,48 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             required
           />
           <InputField
-            id="cardholder_name"
-            name="cardholder_name"
-            label="Cardholder Name*"
+            id="bank_name"
+            name="bank_name"
+            label="Bank Name"
             type="text"
             required
           />
           <InputField
-            id="card_number"
-            name="card_number"
-            label="Card Number*"
+            id="account_type"
+            name="account_type"
+            label="Account Type"
             type="text"
             required
           />
-          <div className="w-full flex items-center gap-x-[1rem]">
-            <InputField
-              id="expiry_date"
-              name="expiry_date"
-              label="Expiration Date*"
-              type="date"
-              required
-              defaultValue="2022-01-01"
-            />
-            <InputField
-              id="cvv"
-              name="cvv"
-              label="CVV or CID"
-              type="text"
-              required
-            />
-          </div>
+          <InputField
+            id="swift_code"
+            name="swift_code"
+            label="Swift Code"
+            type="text"
+            required
+          />
+          <InputField
+            id="iban_number"
+            name="iban_number"
+            label="IBAN Number"
+            type="text"
+            required
+          />
+          <InputField id="pin" name="pin" label="PIN" type="text" required />
+          <TextAreaField
+            id="branch_address"
+            name="branch_address"
+            label="Branch Address"
+            type="text"
+            required
+          />
+          <InputField
+            id="branch_phone"
+            name="branch_phone"
+            label="Branch Phone"
+            type="text"
+            required
+          />
         </div>
 
         {/* Other */}
@@ -81,7 +93,13 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
           <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
             Other
           </p>
-          <InputField id="folder" name="folder" label="Folder" type="text" required/>
+          <InputField
+            id="folder"
+            name="folder"
+            label="Folder"
+            type="text"
+            required
+          />
           <TextAreaField id="note" name="note" label="Note" />
         </div>
       </div>

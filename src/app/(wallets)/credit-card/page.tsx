@@ -41,7 +41,6 @@ function page() {
         ) : (
           <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll">
             <EmptySection
-
               bgImage="/assets/icons/empty/bg-credit-card.svg"
               title="Fill forms online stress-free"
               description="Jot down a Wi-Fi code, office security alarm code or your friend's birthday"
