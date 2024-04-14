@@ -11,8 +11,7 @@ import { useTabs } from "@/components/settings/useTabs";
 import Heading from "@/components/shared/Heading";
 import RightPan from "@/components/shared/RightPan";
 import ProtectedRoute from "@/utils/ProtectedRoutes";
-import isAuth from "@/utils/ProtectedRoutes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Settings() {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,12 +65,7 @@ function Settings() {
   const closeRightPanel = () => {
     setIsOpen(false);
   };
-  useEffect(() => {
-    window.addEventListener("keydown", keyDownHandler);
-    return () => {
-      window.removeEventListener("keydown", keyDownHandler);
-    }
-  });
+
   return (
     <ProtectedRoute>
       <>
