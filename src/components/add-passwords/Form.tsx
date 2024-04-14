@@ -2,6 +2,7 @@
 import React from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
+import { InputField, PasswordField, TextAreaField } from "../credit-card/InputField";
 
 const Form = ({ width, breakpoint, closeRightPanel }) => {
   const [name, setName] = React.useState("aaa");
@@ -34,87 +35,47 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
           height={width > breakpoint ? 40 : 30}
         />
       </div>
-      <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex flex-col justify-center items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem]">
-        <p className="text-[0.8125rem] font-[500] text-[#A0A0A0]">
-          Name<span className="text-[#F06868]"> *</span>
-        </p>
-        <input
-          className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#fff] placeholder:text-[#fff]"
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
+      <InputField id="name" label="Name" type="text" required />
+
       <div className="flex-col flex w-full gap-y-[2.5rem] py-[2.5rem]">
         {/* login details */}
         <div className="w-full flex-col flex text-left gap-y-[1rem]">
           <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
             Login Details
           </p>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex flex-col justify-center items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem]">
-            <p className="text-[0.8125rem] font-[500] text-[#A0A0A0]">
-              Email or username
-            </p>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#fff] placeholder:text-[#fff]"
-              type="email"
-              placeholder="johndoe@gmail.com"
-            />
-          </div>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex justify-start items-center border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <input
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
-              type="text"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <p className="text-[1rem] text-[#2ED370] flex justify-end items-center gap-x-[1rem] cursor-pointer">
-              Generate
-              <Image
-                src={"/assets/icons/eye.svg"}
-                width={24}
-                height={24}
-                alt="eye"
-              />
-            </p>
-          </div>
+          <InputField
+            id="email"
+            name="email"
+            label="Email or username"
+            type="email"
+          />
+          <PasswordField
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+          />
         </div>
         {/* Websites */}
         <div className="w-full flex-col flex text-left gap-y-[1rem]">
           <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
             Websites
           </p>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex justify-start items-center border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <input
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
-              type="text"
-              placeholder="Website URL"
-            />
-          </div>
+          <InputField
+            id="website"
+            name="website"
+            label="Website"
+            type="text"
+            required
+          />
         </div>
         {/* Other */}
         <div className="w-full flex-col flex text-left gap-y-[1rem]">
           <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
             Other
           </p>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[4.3125rem] flex justify-start items-center border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <input
-              className="w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
-              type="text"
-              placeholder="Folder"
-              name="folder"
-            />
-          </div>
-          <div className="w-full px-[1.5rem] py-[0.75rem] h-[10.9375rem] flex justify-start items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem] tracking-[-0.005rem]">
-            <textarea
-              className="w-full resize-none h-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 leading-[1.5rem] text-[#A0A0A0] placeholder:text-[#fff]"
-              placeholder="Note"
-            />
-          </div>
+          <InputField id="folder" name="folder" label="Folder" type="text" />
+          <TextAreaField id="note" name="note" label="Note" />
         </div>
       </div>
       <div className="flex justify-end gap-x-[0.5rem] py-[1rem] items-center w-full bg-[#202020] sticky bottom-0">
