@@ -38,11 +38,11 @@ function page() {
     <ProtectedRoute>
       <>
         <main className="flex h-full flex-col flex-1 items-center justify-start w-full bg-[#191919] overflow-y-scroll px-[2rem]">
-          <div className="w-full bg-[#060606] min-h-[24rem]  mt-10 p-[2rem] flex flex-col justify-start relative gap-y-2 rounded-[0.5rem]">
+          <div className="w-full bg-[#060606] h-auto xl:min-h-[24rem]  mt-10 p-[2rem] flex flex-col justify-start relative gap-y-2 rounded-[0.5rem]">
             <h3 className="text-[#A0A0A0] text-[0.75rem] font-[700] tracking-[0.075rem] uppercase font-generalSans">
               Password Health
             </h3>
-            <div className="flex items-center justify-start px-[2rem] h-full w-full">
+            <div className="flex-col flex xl:flex-row items-center justify-center  xl:justify-start px-[2rem] h-full w-full xl:gap-y-0 gap-y-[1.5rem]">
               <div className="flex flex-col justify-center items-start h-full w-[40%] gap-y-[1rem]">
                 <div className="w-[12rem] h-[12rem]">
                   <CircularProgressbarWithChildren
@@ -70,7 +70,7 @@ function page() {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-[1.5rem] w-fit">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-[1.5rem] w-[28rem] lg:w-[35.6rem]">
                 <PasswordBox
                   icon="/assets/icons/tools/cross.svg"
                   title="Weak Passwords"

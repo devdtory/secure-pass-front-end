@@ -33,7 +33,7 @@ const MFAProvider = ({
       <SecondaryButton
         title={`${status === "active" ? "Active" : "+ Add"}`}
         onClick={onClick}
-        width={"120px"}
+        minWidth={"120px"}
         // disabled={status === "active"}
         className={` !font-[500] !text-[1rem] 1leading-[1.5rem] ${status==='active' ? '!border-[#2ED370] !text-[#2ED370]':'!border-[#A0A0A0] !text-[#A0A0A0]'} !border-[2px]`}
       />

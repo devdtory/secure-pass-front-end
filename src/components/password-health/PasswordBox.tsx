@@ -9,7 +9,7 @@ type Props = {
 };
 const PasswordBox = ({ title, value, color, icon }: Props) => {
   return (
-    <div className="w-[17.1875rem] h-[4.6875rem] shrink-0 px-[1rem] py-[0.75rem] bg-[#1A1A1A] rounded-[0.5rem] flex items-center gap-x-[0.75rem] cursor-pointer">
+    <div className="w-full h-[4.6875rem] flex-shrink px-[1rem] py-[0.75rem] bg-[#1A1A1A] rounded-[0.5rem] flex items-center gap-x-[0.75rem] cursor-pointer">
       <div
         style={{
           backgroundColor: color,

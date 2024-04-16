@@ -5,7 +5,7 @@ import React from "react";
 const PasswordItem = () => {
   return (
     <div className="w-full flex justify-start items-center py-[1rem] h-[4.5rem]">
-      <div className="flex items-center justify-center h-[40px] w-[40px] rounded-[30%] my-4 bg-[#fff]">
+      <div className="flex items-center justify-center h-[40px] w-[40px] rounded-[30%] my-4 bg-[#fff] shrink-0">
         {/* <Image
         src={"/assets/icons/empty/note.svg"}
         alt="item"
@@ -13,15 +13,16 @@ const PasswordItem = () => {
         height={40}
       /> */}
       </div>
-      <p className="text-[#EFEFEF] tracking-[-0.005rem] text-[1rem] font-[500] leading-[1.5rem] w-[22rem] px-[0.75rem] py-[0.5rem]">
+      <p className="text-[#EFEFEF] tracking-[-0.005rem] text-[1rem] font-[500] leading-[1.5rem] w-[11rem] xl:w-[22rem] px-[0.75rem] py-[0.5rem] overflow-clip">
         Telegram
       </p>
-      <div className="flex items-center p-0 gap-x-[0.5rem]">
+      <div className="flex items-center p-0 gap-x-[0.5rem] mr-[1rem] xl:mr-0">
         <Image
           src={"/assets/icons/tools/alert.svg"}
           alt="item"
           width={24}
           height={24}
+          className="shrink-0"
         />
         <p className="text-[#B9B9B9] tracking-[-0.00438rem] text-[0.875rem] font-[500] leading-[1.3125rem]">
           Extremely Weak
@@ -35,7 +36,7 @@ const PasswordItem = () => {
             width={18}
             height={18}
           />
-          <p className="text-[#A0A0A0] tracking-[-0.005rem] text-[1rem] font-[500] leading-[1.5rem]">
+          <p className="text-[#A0A0A0] tracking-[-0.005rem] text-[1rem] font-[500] leading-[1.5rem] shrink-0">
             Fix Password
           </p>
         </button>
