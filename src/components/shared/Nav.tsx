@@ -22,9 +22,26 @@ const user = {
     "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  {
+    name: "Upgrade",
+    href: "#",
+    icon: "/assets/icons/profile-menu/dark/king.svg",
+  },
+  {
+    name: "Invite a Friend",
+    href: "#",
+    icon: "/assets/icons/profile-menu/dark/invite.svg",
+  },
+  {
+    name: "Lock App",
+    href: "#",
+    icon: "/assets/icons/profile-menu/dark/lock.svg",
+  },
+  {
+    name: "Log out",
+    href: "#",
+    icon: "/assets/icons/profile-menu/dark/logout.svg",
+  },
 ];
 const Nav = () => {
   const { setSearchOpen } = useSearch();
@@ -114,33 +131,96 @@ const Nav = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none">
+              <Menu.Items
+                className="w-[336px] shrink-0  origin-top-right absolute z-10 right-0 mt-2 px-[16px] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 py-1 focus:outline-none pb-[1.88rem]"
+                style={{
+                  background: `url('/assets/icons/profile-menu/menu-light-bg.svg')`,
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                }}
+              >
+                <Menu.Item>
+                  <div className="flex items-center mx-[1.5rem] pt-[36px] pb-[26px] mb-[18px] border-b-[1px] border-[#666666] cursor-pointer gap-x-[1.5rem]">
+                    <span className="inline-block relative">
+                    <Image
+                        width={50}
+                        height={50}
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        className="h-[50px] w-[50px] rounded-full"
+                        alt="profile-picture"
+                      />
+                      <Image
+                        src={"/assets/icons/profile-menu/dark/camera.svg"}
+                        width={18}
+                        height={18}
+                        alt="camera"
+                        className="absolute bottom-0 right-0 block h-[18px] w-[18px] rounded-full"
+                      />
+                    </span>
+                    <div className="flex flex-col items-start justify-center gap-y-[8px]">
+                      <p className="text-[#252525] text-[1rem] font-[600] -tracking-[0.005rem] leading-normal p-0">
+                        johndoe@gmail.com
+                      </p>
+                      <p className="text-[#252525] text-[1rem] font-[500] -tracking-[0.005rem] leading-normal p-0">
+                        Free plan
+                      </p>
+                    </div>
+                  </div>
+                </Menu.Item>
                 {userNavigation.map((item) => (
                   <Menu.Item key={item.name}>
-                    {({ active }) =>
-                      item.name === "Sign out" ? (
-                        <p
-                          onClick={() => {
-                            setIsAuthenticated(false);
-                          }}
-                          className={classNames(
-                            active ? "bg-gray-100" : "",
-                            "block py-2 px-4 text-sm text-gray-700"
-                          )}
-                        >
-                          {item.name}
-                        </p>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className={classNames(
-                            active ? "bg-gray-100" : "",
-                            "block py-2 px-4 text-sm text-gray-700"
-                          )}
-                        >
-                          {item.name}
-                        </Link>
+                    {
+                      ({ active }) => (
+                        <>
+                          <Link href={item.href} onClick={()=>{
+                            if(item.name === "Log out"){
+                              setIsAuthenticated(false);
+                            }
+                          }}>
+                            <div
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "flex items-center px-[1.5rem] py-[0.75rem] cursor-pointer gap-x-[0.75rem] hover:bg-[#666666] hover:bg-opacity-10 transition-all duration-200 ease-in-out"
+                              )}
+                            >
+                              <Image
+                                src={item.icon}
+                                width={24}
+                                height={24}
+                                alt={item.name}
+                                className="shrink-0 w-[24px] h-auto"
+                              />
+                              <span className="text-[#252525] leading-normal -tacking-[0.005rem] text-[1rem]">
+                                {item.name}
+                              </span>
+                            </div>
+                          </Link>
+                        </>
                       )
+                      // item.name === "Sign out" ? (
+                      //   <p
+                      //     onClick={() => {
+                      //       setIsAuthenticated(false);
+                      //     }}
+                      //     className={classNames(
+                      //       active ? "bg-gray-100" : "",
+                      //       "block py-2 px-4 text-sm text-gray-700"
+                      //     )}
+                      //   >
+                      //     {item.name}
+                      //   </p>
+                      // ) : (
+                      //   <Link
+                      //     href={item.href}
+                      //     className={classNames(
+                      //       active ? "bg-gray-100" : "",
+                      //       "block py-2 px-4 text-sm text-gray-700"
+                      //     )}
+                      //   >
+                      //     {item.name}
+                      //   </Link>
+                      // )
                     }
                   </Menu.Item>
                 ))}
