@@ -1,19 +1,34 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
 import { InputField, PasswordField, TextAreaField } from "../shared/InputField";
 
 const Form = ({ width, breakpoint, closeRightPanel }) => {
   const formRef = React.useRef<HTMLFormElement>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const inputValidity = useRef([]);
+  const [isFormValid, setIsFormValid] = useState(true);
+  const handleInputValidityChange = (index:number, isValid:boolean) => {
+    // Update the validity status of each input field
+    inputValidity.current[index] = isValid;
+    // Check overall form validity
+    setIsFormValid(inputValidity.current.every((valid) => valid));
+  };
+
   return (
     <form
-      ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Form submitted", formRef.current?.elements);
+        console.log('Form Submission',inputValidity,isFormValid)
+        setSubmitted(true);
+        if (!isFormValid) {
+          alert("Error occured");
+          return; // Prevent form submission if form is not valid
+        }
+        
         alert("Form submitted");
-        closeRightPanel();
+        // console.log("Form submitted");
       }}
       className="w-full h-full px-[2rem] overflow-y-scroll relative"
     >
@@ -37,32 +52,38 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
       <div className="flex-col flex w-full gap-y-[2.5rem] ">
         <div className="w-full flex-col flex text-left gap-y-[1rem]">
           <InputField
+            submitted={submitted}
+            validateType={'text'}
+            onValidityChange={(isValid:boolean)=>handleInputValidityChange(0,isValid)}
             id="title"
             name="title"
             label="Title*"
             type="text"
-            required
           />
           <InputField
+            submitted={submitted}
+            validateType={'cryptoAddress'}
+            onValidityChange={(isValid:boolean)=>handleInputValidityChange(1,isValid)}
             id="wallet_address"
             name="wallet_address"
             label="Wallet Address"
             type="text"
-            required
+            errorMessage="Please enter a valid wallet address"
           />
           <InputField
+            submitted={submitted}
+            validateType={'text'}
+            onValidityChange={(isValid:boolean)=>handleInputValidityChange(2,isValid)}
             id="wallet_password"
             name="wallet_password"
-            label="wallet Password"
+            label="Wallet Password"
             type="text"
-            required
           />
           <TextAreaField
             id="paraphrase"
             name="paraphrase"
             label="Paraphrase"
             type="text"
-            required
           />
         </div>
 
@@ -72,11 +93,13 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             Other
           </p>
           <InputField
+            submitted={submitted}
+            validateType={'text'}
+            onValidityChange={(isValid:boolean)=>handleInputValidityChange(3,isValid)}
             id="folder"
             name="folder"
             label="Folder"
             type="text"
-            required
           />
           <TextAreaField id="note" name="note" label="Note" />
         </div>

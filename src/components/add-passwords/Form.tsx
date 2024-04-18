@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
 import { InputField, PasswordField, TextAreaField } from "../shared/InputField";
@@ -11,11 +11,29 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
   const [website, setWebsite] = React.useState("");
   const [folder, setFolder] = React.useState("");
   const [note, setNote] = React.useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const inputValidity = useRef([]);
+  const [isFormValid, setIsFormValid] = useState(true);
+  const handleInputValidityChange = (index:number, isValid:boolean) => {
+    // Update the validity status of each input field
+    inputValidity.current[index] = isValid;
+    // Check overall form validity
+    setIsFormValid(inputValidity.current.every((valid) => valid));
+  };
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Form submitted");
+        console.log('Form Submission',inputValidity,isFormValid)
+        setSubmitted(true);
+        if (!isFormValid) {
+          alert("Error occured");
+          return; // Prevent form submission if form is not valid
+        }
+        
+        alert("Form submitted");
+        // console.log("Form submitted");
       }}
       className="w-full h-full px-[2rem] overflow-y-scroll relative"
     >
@@ -35,7 +53,15 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
           height={width > breakpoint ? 40 : 30}
         />
       </div>
-      <InputField id="name" label="Name" type="text" required />
+      <InputField
+        onValidityChange={(isValid) => handleInputValidityChange(0, isValid)}
+        submitted={submitted}
+        id="name"
+        label="Name"
+        type="text"
+        validateType={"text"}
+        errorMessage="Please fill out this message"
+      />
 
       <div className="flex-col flex w-full gap-y-[2.5rem] py-[2.5rem]">
         {/* login details */}
@@ -44,16 +70,26 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             Login Details
           </p>
           <InputField
+            onValidityChange={(isValid:boolean) =>
+              handleInputValidityChange(0, isValid)
+            }
+            submitted={submitted}
             id="email"
             name="email"
             label="Email or username"
             type="email"
+            validateType={"email"}
+            errorMessage="Email is not valid"
           />
           <PasswordField
             id="password"
             name="password"
             label="Password"
             type="password"
+            validateType={"password"}
+            submitted={submitted}
+            onValidityChange={(isValid) => handleInputValidityChange(1, isValid)}
+            errorMessage="Password must contain at least 8 characters, including letters and numbers"
           />
         </div>
         {/* Websites */}
@@ -62,11 +98,16 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             Websites
           </p>
           <InputField
+            onValidityChange={(isValid:true) =>
+              handleInputValidityChange(2, isValid)
+            }
+            submitted={submitted}
             id="website"
             name="website"
             label="Website"
             type="text"
-            required
+            validateType={"email"}
+            errorMessage="Email is not valid"
           />
         </div>
         {/* Other */}
@@ -74,19 +115,23 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
           <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
             Other
           </p>
-          <InputField id="folder" name="folder" label="Folder" type="text" />
+          <InputField
+            onValidityChange={(isValid:boolean) =>
+              handleInputValidityChange(3, isValid)
+            }
+            submitted={submitted}
+            id="folder"
+            name="folder"
+            label="Folder"
+            type="text"
+            validateType={"none"}
+            errorMessage="Please fill out this message"
+          />
           <TextAreaField id="note" name="note" label="Note" />
         </div>
       </div>
       <div className="flex justify-end gap-x-[0.5rem] py-[1rem] items-center w-full bg-[#202020] sticky bottom-0">
-        <PrimaryButton
-          title="Save"
-          onClick={() => {
-            alert("Form submitted");
-            closeRightPanel();
-          }}
-          minWidth={"7.5rem"}
-        />
+        <PrimaryButton title="Save" type="submit" minWidth={"7.5rem"} />
         <SecondaryButton
           title="Cancel"
           onClick={closeRightPanel}

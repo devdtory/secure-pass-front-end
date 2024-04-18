@@ -1,19 +1,34 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
 import { InputField, PasswordField, TextAreaField } from "../shared/InputField";
 
 const Form = ({ width, breakpoint, closeRightPanel }) => {
   const formRef = React.useRef<HTMLFormElement>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const inputValidity = useRef([]);
+  const [isFormValid, setIsFormValid] = useState(true);
+  const handleInputValidityChange = (index: number, isValid: boolean) => {
+    // Update the validity status of each input field
+    inputValidity.current[index] = isValid;
+    // Check overall form validity
+    setIsFormValid(inputValidity.current.every((valid) => valid));
+  };
+
   return (
     <form
-      ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Form submitted", formRef.current?.elements);
+        console.log("Form Submission", inputValidity, isFormValid);
+        setSubmitted(true);
+        if (!isFormValid) {
+          alert("Error occured");
+          return; // Prevent form submission if form is not valid
+        }
+
         alert("Form submitted");
-        closeRightPanel();
+        // console.log("Form submitted");
       }}
       className="w-full h-full px-[2rem] overflow-y-scroll relative"
     >
@@ -41,50 +56,72 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             name="title"
             label="Title*"
             type="text"
-            required
+            validateType={"text"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(0, valid)}
           />
           <InputField
             id="bank_name"
             name="bank_name"
             label="Bank Name"
             type="text"
-            required
+            validateType={"text"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(1, valid)}
           />
           <InputField
             id="account_type"
             name="account_type"
             label="Account Type"
             type="text"
-            required
+            validateType={"text"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(2, valid)}
           />
           <InputField
             id="swift_code"
             name="swift_code"
             label="Swift Code"
             type="text"
-            required
+            validateType={"text"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(3, valid)}
           />
           <InputField
             id="iban_number"
             name="iban_number"
             label="IBAN Number"
             type="text"
-            required
+            validateType={"text"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(4, valid)}
           />
-          <InputField id="pin" name="pin" label="PIN" type="text" required />
+          <InputField
+            id="pin"
+            name="pin"
+            label="PIN"
+            type="text"
+            validateType={"text"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(0, valid)}
+          />
           <TextAreaField
             id="branch_address"
             name="branch_address"
             label="Branch Address"
             type="text"
-            required
+            validateType={"text"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(0, valid)}
           />
           <InputField
             id="branch_phone"
             name="branch_phone"
             label="Branch Phone"
             type="text"
-            required
+            validateType={"phone"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(0, valid)}
           />
         </div>
 
@@ -98,7 +135,9 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             name="folder"
             label="Folder"
             type="text"
-            required
+            validateType={"none"}
+            submitted={submitted}
+            onValidityChange={(valid:boolean) => handleInputValidityChange(0, valid)}
           />
           <TextAreaField id="note" name="note" label="Note" />
         </div>

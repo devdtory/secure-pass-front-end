@@ -1,19 +1,34 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
 import { InputField, PasswordField, TextAreaField } from "../shared/InputField";
 
 const Form = ({ width, breakpoint, closeRightPanel }) => {
   const formRef = React.useRef<HTMLFormElement>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const inputValidity = useRef([]);
+  const [isFormValid, setIsFormValid] = useState(true);
+  const handleInputValidityChange = (index: number, isValid: boolean) => {
+    // Update the validity status of each input field
+    inputValidity.current[index] = isValid;
+    // Check overall form validity
+    setIsFormValid(inputValidity.current.every((valid) => valid));
+  };
+
   return (
     <form
-      ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Form submitted", formRef.current?.elements["title"].value);
+        console.log("Form Submission", inputValidity, isFormValid);
+        setSubmitted(true);
+        if (!isFormValid) {
+          alert("Error occured");
+          return; // Prevent form submission if form is not valid
+        }
+
         alert("Form submitted");
-        closeRightPanel();
+        // console.log("Form submitted");
       }}
       className="w-full h-full px-[2rem] overflow-y-scroll relative"
     >
@@ -37,41 +52,63 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
       <div className="flex-col flex w-full gap-y-[2.5rem] ">
         <div className="w-full flex-col flex text-left gap-y-[1rem]">
           <InputField
+            onValidityChange={(isValid: boolean) =>
+              handleInputValidityChange(0, isValid)
+            }
+            submitted={submitted}
             id="title"
             name="title"
             label="Title*"
             type="text"
-            required
+            validateType={"text"}
           />
           <InputField
+            onValidityChange={(isValid: boolean) =>
+              handleInputValidityChange(1, isValid)
+            }
+            submitted={submitted}
             id="cardholder_name"
             name="cardholder_name"
             label="Cardholder Name*"
             type="text"
-            required
+            validateType={"text"}
           />
           <InputField
+            onValidityChange={(isValid: boolean) =>
+              handleInputValidityChange(2, isValid)
+            }
+            submitted={submitted}
             id="card_number"
             name="card_number"
             label="Card Number*"
             type="text"
-            required
+            validateType={"creditCard"}
+            errorMessage="Please enter valid credit card number"
           />
           <div className="w-full flex items-center gap-x-[1rem]">
             <InputField
+              onValidityChange={(isValid: boolean) =>
+                handleInputValidityChange(3, isValid)
+              }
+              submitted={submitted}
               id="expiry_date"
               name="expiry_date"
               label="Expiration Date*"
               type="date"
-              required
-              defaultValue="2022-01-01"
+              validateType={"text"}
+              defaultValue={"12-01-2024"}
             />
             <InputField
+              onValidityChange={(isValid: boolean) =>
+                handleInputValidityChange(4, isValid)
+              }
+              submitted={submitted}
               id="cvv"
               name="cvv"
               label="CVV or CID"
               type="text"
-              required
+              validateType={"cvv"}
+              errorMessage="Please enter valid CVV or CID"
             />
           </div>
         </div>
@@ -81,7 +118,17 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
           <p className="text-[1.25rem] text-[#EDEDED] font-[700] leading-[1.5rem]">
             Other
           </p>
-          <InputField id="folder" name="folder" label="Folder" type="text" required/>
+          <InputField
+            onValidityChange={(isValid: boolean) =>
+              handleInputValidityChange(5, isValid)
+            }
+            submitted={submitted}
+            id="folder"
+            name="folder"
+            label="Folder"
+            type="text"
+            validateType={"text"}
+          />
           <TextAreaField id="note" name="note" label="Note" />
         </div>
       </div>

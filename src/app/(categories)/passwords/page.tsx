@@ -42,7 +42,7 @@ function page() {
                 rightContent={
                   <div className="flex items-center justify-end gap-x-6">
                     <PrimaryButton
-                      title="Add Passwords"
+                      title="Add Password"
                       onClick={openRightPanel}
                       minWidth={"154px"}
                     />

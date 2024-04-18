@@ -6,7 +6,7 @@ import validate from "@/utils/validate";
 const InputField = ({
   id,
   label,
-  errorMessage = " ",
+  errorMessage = "Please fill out this field",
   validateType,
   submitted,
   onValidityChange,
@@ -57,7 +57,7 @@ const InputField = ({
           value={inputValue}
           onChange={handleInputChange}
           className={`w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 pt-[0.25rem] leading-[1.5rem] text-[#fff] placeholder:text-[#fff] peer group-focus-within:translate-y-[10%] ${
-            inputValue && "translate-y-[10%]"
+            inputValue.length > 0 && "translate-y-[10%]"
           }
           `}
         />
@@ -66,7 +66,10 @@ const InputField = ({
           className={`transform transition-all absolute top-0 left-0 h-full flex items-center text-[1rem] group-focus-within:text-[0.8125rem] font-[500] text-[#A0A0A0]  group-focus-within:h-1/2  group-focus-within:-translate-y-[80%]  group-focus-within:pl-0 ${
             props?.required ? "" : ""
           }
-          ${inputValue && "pl-0 !text-[0.8125rem] h-1/2 -translate-y-[80%]"}
+          ${
+            inputValue?.length > 0 &&
+            "pl-0 !text-[0.8125rem] h-1/2 -translate-y-[80%]"
+          }
           ${touched && !isValid ? "text-red-500" : ""}
           `}
         >
@@ -94,7 +97,7 @@ const InputField = ({
 const PasswordField = ({
   id,
   label,
-  errorMessage = " ",
+  errorMessage = "Please fill out this field",
   validateType,
   submitted,
   onValidityChange,
@@ -181,7 +184,7 @@ const PasswordField = ({
           type={isPasswordVisible ? "text" : "password"}
           onChange={handleInputChange}
           className={`w-full bg-transparent outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 pt-[0.25rem] leading-[1.5rem] text-[#fff] placeholder:text-[#fff] peer group-focus-within:translate-y-[10%] ${
-            inputValue && "translate-y-[10%]"
+            inputValue.length > 0 && "translate-y-[10%]"
           }
           `}
         />
@@ -190,7 +193,10 @@ const PasswordField = ({
           className={`transform transition-all absolute top-0 left-0 h-full flex items-center text-[1rem] group-focus-within:text-[0.8125rem] font-[500] text-[#A0A0A0]  group-focus-within:h-1/2  group-focus-within:-translate-y-[80%]  group-focus-within:pl-0 ${
             props?.required ? "" : ""
           }
-          ${inputValue && "pl-0 !text-[0.8125rem] h-1/2 -translate-y-[80%]"}
+          ${
+            inputValue.length > 0 &&
+            "pl-0 !text-[0.8125rem] h-1/2 -translate-y-[80%]"
+          }
           ${touched && !isValid ? "text-red-500" : ""}
           `}
         >
@@ -246,14 +252,17 @@ const TextAreaField = ({ id, label, ...props }) => {
           onChange={(e) => setInputValue(e.target.value)}
           className={`w-full bg-transparent resize-none h-full  outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 pt-[0.75rem] leading-[1.5rem] text-[#fff] placeholder:text-[#fff] peer
           group-focus-within:translate-y-[5%] ${
-            inputValue && "translate-y-[5%]"
+            inputValue.length > 0 && "translate-y-[5%]"
           }
           `}
         />
         <label
           htmlFor={id}
           className={`transform transition-all absolute top-0 left-0 h-full flex items-start text-[1rem] group-focus-within:text-[0.8125rem] font-[500] text-[#A0A0A0]  group-focus-within:h-1/2  group-focus-within:-translate-y-[5%]  group-focus-within:pl-0
-          ${inputValue && "pl-0 !text-[0.8125rem] h-1/2 -translate-y-[5%]"}
+          ${
+            inputValue.length > 0 &&
+            "pl-0 !text-[0.8125rem] h-1/2 -translate-y-[5%]"
+          }
           `}
         >
           {label}
