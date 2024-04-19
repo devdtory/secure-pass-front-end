@@ -23,7 +23,7 @@ const MFAProvider = ({
         width={40}
         height={40}
         alt={provider}
-        className="shrink-0 w-[40px] h-[40px]"
+        className="flex-shrink-0 shrink-0 w-[40px] h-[40px]"
       />
      <div className="flex flex-col items-start justify-center xl:flex-row xl:items-center xl:justify-start flex-1">
         <h3 className="w-full xl:w-[11.0625rem] overflow-wrap text-left items-center flex leading-[1.5rem] text-[1rem] text-[#ffffff] tracking-[-0.005rem]">

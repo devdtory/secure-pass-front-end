@@ -106,8 +106,8 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             name="website"
             label="Website"
             type="text"
-            validateType={"email"}
-            errorMessage="Email is not valid"
+            validateType={"website"}
+            errorMessage="Website Url is not valid"
           />
         </div>
         {/* Other */}

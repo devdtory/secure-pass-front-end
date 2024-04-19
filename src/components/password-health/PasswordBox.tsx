@@ -14,7 +14,7 @@ const PasswordBox = ({ title, value, color, icon }: Props) => {
         style={{
           backgroundColor: color,
         }}
-        className={`w-[3.125rem] h-[3.125rem] shrink-0 rounded-full justify-center items-center flex`}
+        className={`w-[3.125rem] h-[3.125rem] flex-shrink-0 shrink-0 rounded-full justify-center items-center flex`}
       >
         <Image src={icon} alt="cross" width={30} height={30} />
       </div>

@@ -237,28 +237,31 @@ const PasswordField = ({
   );
 };
 
-const TextAreaField = ({ id, label, ...props }) => {
+const TextAreaField = ({ id, label, height = "10.9375rem",rows=5, ...props }) => {
   const [inputValue, setInputValue] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [touched, setTouched] = useState(false);
   return (
-    <div className="w-full px-[1.5rem] py-[0.75rem] h-[10.9375rem]  flex justify-start items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem]">
+    <div
+      style={{ height: height }}
+      className="w-full px-[1.5rem] py-[0.75rem] flex justify-start items-start border-[#5A5A5A] border-[2px] rounded-[0.25rem]"
+    >
       <div className="w-full relative group flex-1">
         <textarea
           {...props}
           id={id}
-          rows={5}
+          rows={rows}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className={`w-full bg-transparent resize-none h-full  outline-none focus:outline-none focus:ring-0 border-none text-[1rem] p-0 pt-[0.75rem] leading-[1.5rem] text-[#fff] placeholder:text-[#fff] peer
-          group-focus-within:translate-y-[5%] ${
+          ${rows>5 ? 'group-focus-within:translate-y-[0%]' : 'group-focus-within:translate-y-[5%]'} ${
             inputValue.length > 0 && "translate-y-[5%]"
           }
           `}
         />
         <label
           htmlFor={id}
-          className={`transform transition-all absolute top-0 left-0 h-full flex items-start text-[1rem] group-focus-within:text-[0.8125rem] font-[500] text-[#A0A0A0]  group-focus-within:h-1/2  group-focus-within:-translate-y-[5%]  group-focus-within:pl-0
+          className={`transform transition-all absolute top-0 left-0 h-full flex items-start text-[1rem] group-focus-within:text-[0.8125rem] font-[500] text-[#A0A0A0]  group-focus-within:h-1/2  ${rows>5 ? 'group-focus-within:translate-y-[0%]' : 'group-focus-within:translate-y-[5%]'}  group-focus-within:pl-0
           ${
             inputValue.length > 0 &&
             "pl-0 !text-[0.8125rem] h-1/2 -translate-y-[5%]"

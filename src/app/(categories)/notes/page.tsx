@@ -1,4 +1,5 @@
 "use client";
+import Form from "@/components/add-notes/Form";
 import { PrimaryButton, SecondaryButton } from "@/components/shared/Buttons";
 import EmptySection from "@/components/shared/EmptyPage";
 import Heading from "@/components/shared/Heading";
@@ -9,13 +10,25 @@ import { useEffect, useState } from "react";
 function page() {
   const [isOpen, setIsOpen] = useState(false);
   const [passwords, setPasswords] = useState([]);
-  
+  const [width, setWidth] = useState(1024);
+  const breakpoint = 1024;
+
   const openRightPanel = () => {
     setIsOpen(true);
   };
   const closeRightPanel = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    // subscribe to window resize event "onComponentDidMount"
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
 
   return (
     <ProtectedRoute>
@@ -51,10 +64,15 @@ function page() {
 
         <RightPan
           isOpen={isOpen}
-          title="Add a password"
+          title="Add secure note"
           onClose={closeRightPanel}
+          width="700px"
         >
-          <div className="w-full h-full bg-fray-200"></div>
+          <Form
+            closeRightPanel={closeRightPanel}
+            width={width}
+            breakpoint={breakpoint}
+          />
         </RightPan>
       </>
     </ProtectedRoute>

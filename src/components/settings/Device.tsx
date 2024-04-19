@@ -7,7 +7,7 @@ const Device = ({ className, rightIcon = true }: any) => {
     <div
       className={`w-full h-[7rem] lg:h-[6.125rem] xl:h-[5.125rem] px-[2rem] py-[1rem] flex items-center justify-start rounded-[0.5rem] ${className} overflow-hidden`}
     >
-      <div className="flex items-center justify-center h-[50px] w-[50px] rounded-[30%] my-4 bg-[#fff] shrink-0">
+      <div className="flex items-center justify-center h-[50px] w-[50px] rounded-[30%] my-4 bg-[#fff] flex-shrink-0 shrink-0">
         {/* <Image
         src={"/assets/icons/empty/note.svg"}
         alt="item"

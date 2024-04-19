@@ -102,7 +102,7 @@ const Nav = () => {
             />
           </Link>
 
-          <Menu as="div" className="flex-shrink-0 relative">
+          <Menu as="div" className="flex-flex-shrink-0 shrink-0 relative">
             <div>
               <Menu.Button className="bg-[#1A1A1A] rounded-3xl flex focus:outline-none items-center justify-between px-2 py-2">
                 <Image
@@ -132,7 +132,7 @@ const Nav = () => {
               leaveTo="transform opacity-0 scale-95"
             >
               <Menu.Items
-                className="w-[336px] shrink-0  origin-top-right absolute z-10 right-0 mt-2 px-[16px] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 py-1 focus:outline-none pb-[1.88rem]"
+                className="w-[336px] flex-shrink-0 shrink-0  origin-top-right absolute z-10 right-0 mt-2 px-[16px] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 py-1 focus:outline-none pb-[1.88rem]"
                 style={{
                   background: `url('/assets/icons/profile-menu/menu-light-bg.svg')`,
                   backgroundSize: "contain",
@@ -189,7 +189,7 @@ const Nav = () => {
                                 width={24}
                                 height={24}
                                 alt={item.name}
-                                className="shrink-0 w-[24px] h-auto"
+                                className="flex-shrink-0 shrink-0 w-[24px] h-auto"
                               />
                               <span className="text-[#252525] leading-normal -tacking-[0.005rem] text-[1rem]">
                                 {item.name}
