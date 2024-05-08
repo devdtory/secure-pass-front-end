@@ -52,7 +52,7 @@ function page() {
             <EmptySection
               bgImage="/assets/icons/empty/bg-notes.svg"
               title="Notes with security"
-              description="Jot down a Wi-Fi code, office security alarm code or your friend's birthday"
+              description="Save WiFi password, Social Security number, even images of your drivers license."
               icon="/assets/icons/empty/note.svg"
               primaryButton={{
                 title: "Add Secure Note",

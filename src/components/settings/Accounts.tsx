@@ -11,7 +11,7 @@ import { RowItem, Section } from "./Common";
 const Accounts = () => {
   return (
     <div className="flex w-full flex-col gap-y-[24px]">
-      <Section title="Accounts">
+      <Section title="Account Info">
         <div className="flex flex-col w-full items-start justify-start gap-y-[18px]">
           <RowItem
             title="Email"
@@ -74,17 +74,17 @@ const Accounts = () => {
                       English
                     </DropdownMenuItem>
                     <DropdownMenuItem className="hover:bg-[#3A3A3A]/50 px-[24px] py-[10px]">
-                      Hindi
+                      Spanish
                     </DropdownMenuItem>
                     <DropdownMenuItem className="hover:bg-[#3A3A3A]/50 px-[24px] py-[10px]">
-                      French
+                      Mandarin (Chinese)
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
             }
           />
-          <RowItem
+          {/* <RowItem
             title="Time Zone"
             rightContent={
               <div className="flex justify-end items-center my-[0.5rem] xl:my-0 h-full gap-x-[10px] xl:gap-x-[16px]">
@@ -114,7 +114,7 @@ const Accounts = () => {
                 </DropdownMenu>
               </div>
             }
-          />
+          /> */}
         </div>
       </Section>
       <Section title="Master Password">

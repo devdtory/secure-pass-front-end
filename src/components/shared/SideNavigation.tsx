@@ -64,7 +64,7 @@ const SideNavigation = () => {
         initial="open"
         className={`bg-[#151515] flex flex-col z-10 gap-10 py-5 pt-12 top-0 left-0 h-full shadow shadow-neutral-600 overflow-y-scroll `}
       >
-        <div className="flex flex-row w-full justify-between place-items-center px-6">
+        <Link href="/" className="flex flex-row w-full justify-between place-items-center px-6">
           <motion.div
             className={`${
               isOpen ? "flex" : "hidden"
@@ -116,7 +116,7 @@ const SideNavigation = () => {
               />
             </svg>
           </button> */}
-        </div>
+        </Link>
         <div className="flex flex-col gap-y-5">
           {defaultFAQs.map((faq, i) => (
             <Disclosure key={i} title={faq.question} body={faq.answer} />

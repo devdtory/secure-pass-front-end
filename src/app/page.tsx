@@ -24,7 +24,7 @@ function Home() {
     {
       title: "Save first password or import passwords",
       description:
-        "Save passwords quickly and autofill login details using the extension.",
+        "Importing passwords from any password manger or browser.",
       icon: "/assets/icons/get-started/step-1.svg",
       rightText: "Takes 1 minute",
       action: () => {},
@@ -32,7 +32,7 @@ function Home() {
     {
       title: "Download mobile app",
       description:
-        "Save passwords quickly and autofill login details using the extension.",
+        "Take SecurePasswords with you every with the mobile app.",
       icon: "/assets/icons/get-started/step-2.svg",
       rightText: "Takes 1 minute",
       action: () => {},
@@ -40,7 +40,7 @@ function Home() {
     {
       title: "Setup MFA with mobile app",
       description:
-        "Save passwords quickly and autofill login details using the extension.",
+        "Improve the security of your digital life.",
       icon: "/assets/icons/get-started/step-3.svg",
       rightText: "Takes 1 minute",
       action: () => {},
@@ -48,7 +48,7 @@ function Home() {
     {
       title: "Add SecurePasswords browser extension",
       description:
-        "Save passwords quickly and autofill login details using the extension.",
+        "For fast and easy logins get the plugin for your favorite browser.",
       icon: "/assets/icons/get-started/step-4.svg",
       rightText: "Takes 1 minute",
       action: () => {},
@@ -56,7 +56,7 @@ function Home() {
     {
       title: "Review Security Audit (Only if imported password)",
       description:
-        "Save passwords quickly and autofill login details using the extension.",
+        "Check to ensure you are following best security practices.",
       icon: "/assets/icons/get-started/step-5.svg",
       rightText: "Takes 1 minute",
       action: () => {},

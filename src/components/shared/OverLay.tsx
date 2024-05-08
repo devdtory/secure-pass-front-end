@@ -15,7 +15,7 @@ const OverLay = ({
   return (
     <div
       className={`fixed inset-0 p-10 flex items-center justify-center
-    ${isOpen ? "block" : "hidden"} z-50 bg-gray-950/[.90]
+    ${isOpen ? "block" : "hidden"} z-50 bg-[#0a0a0a] bg-opacity-65
     `}
       onClick={onClose}
     >
