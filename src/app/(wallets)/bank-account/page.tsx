@@ -53,7 +53,7 @@ function page() {
           </main>
         )}
 
-<RightPan
+        <RightPan
           isOpen={isOpen}
           title="Add Credit Card"
           onClose={closeRightPanel}

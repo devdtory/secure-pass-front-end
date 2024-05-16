@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { PrimaryButton, SecondaryButton } from "../shared/Buttons";
 import Image from "next/image";
-import { InputField, PasswordField, TextAreaField } from "../shared/InputField";
+import { DateField, InputField, PasswordField, TextAreaField } from "../shared/InputField";
 
 const Form = ({ width, breakpoint, closeRightPanel }) => {
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -86,7 +86,7 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
             errorMessage="Please enter valid credit card number"
           />
           <div className="w-full flex items-center gap-x-[1rem]">
-            <InputField
+            <DateField
               onValidityChange={(isValid: boolean) =>
                 handleInputValidityChange(3, isValid)
               }
@@ -95,8 +95,7 @@ const Form = ({ width, breakpoint, closeRightPanel }) => {
               name="expiry_date"
               label="Expiration Date*"
               type="date"
-              validateType={"text"}
-              defaultValue={"12-01-2024"}
+              validateType={"date"}
             />
             <InputField
               onValidityChange={(isValid: boolean) =>
