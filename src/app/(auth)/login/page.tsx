@@ -5,6 +5,7 @@ import {
   TertiaryButton,
 } from "@/components/shared/Buttons";
 import { AuthContext } from "@/context/AuthContext";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -12,11 +13,27 @@ import React, { useContext, useEffect } from "react";
 
 const page = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const formRef = React.useRef<HTMLFormElement>(null);
+  const { data: session } = useSession();
+  const handleFormSubmit = async (e:any) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    const formData = new FormData(formRef.current);
+    const login_id = formData.get("login_id") as string;
+    const password = formData.get("password") as string;
+
+    const responseFromNextAuth = await signIn("credentials", {
+      login_id,
+      password,
+      redirect: false,
+    });
+    console.log("Response in login", responseFromNextAuth);
+  };
   useEffect(() => {
-    if (isAuthenticated) {
+    if (session?.user?.accessToken) {
       return redirect("/");
     }
-  }, [isAuthenticated]);
+  }, [session?.user]);
 
   return (
     <div className="w-full h-screen max-h screen max-w-screen bg-[#EFEFEF] flex ">
@@ -39,9 +56,7 @@ const page = () => {
       </div>
       <div className="h-full flex-1/2 p-12 px-16 flex flex-col justify-between items-end w-1/2">
         <div className="flex justify-end items-center gap-6 w-full">
-          <p className="text-[16px] text-[#666666] ">
-            New around here ?
-          </p>
+          <p className="text-[16px] text-[#666666] ">New around here ?</p>
           <Link href="/registration">
             <TertiaryButton title="Create Account" width={"200px"} />
           </Link>
@@ -51,19 +66,19 @@ const page = () => {
             Sign in to SecurePasswords
           </h3>
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setIsAuthenticated(true);
-            }}
+            onSubmit={handleFormSubmit}
+            ref={formRef}
             className="w-[90%] flex flex-col items-start justify-center gap-y-3 "
           >
             <input
               type="text"
+              name="login_id"
               placeholder="Email Address"
               className="w-full h-[69px] bg-transparent text-[#666666] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none focus:ring-0 border-[2px] border-[#666666]"
             />
             <input
               type="password"
+              name="password"
               placeholder="Master Password"
               className="w-full h-[69px] bg-transparent text-[#666666] px-[16px] py-[12px] text-[16px] rounded-[3px] focus:outline-none focus:ring-0 border-[2px] border-[#666666]"
             />
@@ -74,17 +89,13 @@ const page = () => {
                 id=""
                 className="focus:ring-0 focus:outline-none border-[#666666] rounded-[3px] bg-transparent checked:bg-[#666666] focus:bg-[#666666]"
               />
-              <p className="text-[16px] text-[#727272] ">
-                Remember me
-              </p>
+              <p className="text-[16px] text-[#727272] ">Remember me</p>
             </div>
             <PrimaryButton title="Continue" className="mt-3" type="submit" />
           </form>
           <p className="text-[#666666] text-[16px]">Forgot Password?</p>
         </div>
-        <p className="text-[16px] text-[#666666] ">
-          Version 2024.1.0
-        </p>
+        <p className="text-[16px] text-[#666666] ">Version 2024.1.0</p>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import EmptySection from "@/components/shared/EmptyPage";
 import Heading from "@/components/shared/Heading";
 import RightPan from "@/components/shared/RightPan";
 import ProtectedRoute from "@/utils/ProtectedRoutes";
+import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -13,8 +14,9 @@ function page() {
   const [isOpen, setIsOpen] = useState(false);
   const [passwords, setPasswords] = useState([]);
   const [width, setWidth] = useState(1024);
+  const axiosAuth = useAxiosAuth();
   const breakpoint = 1024;
-  
+
   const openRightPanel = () => {
     setIsOpen(true);
   };
@@ -30,6 +32,22 @@ function page() {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResizeWindow);
     };
+  }, []);
+
+  const getPasswords = async () => {
+    console.log("getPasswords");
+    try {
+      const resp = await axiosAuth.get("/user/checklist", {
+        withCredentials: true,
+      });
+      console.log({ resp });
+    } catch (e) {
+      console.log({ e });
+    }
+  };
+  useEffect(() => {
+    // Fetch data from API
+    getPasswords();
   }, []);
   return (
     <ProtectedRoute>

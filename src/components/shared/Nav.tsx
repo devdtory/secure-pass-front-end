@@ -11,6 +11,7 @@ import Link from "next/link";
 import { AuthContext } from "@/context/AuthContext";
 import { redirect } from "next/navigation";
 import RightPan from "./RightPan";
+import { useSession } from "next-auth/react";
 // Font files can be colocated inside of `pages`
 const satoshi = localFont({
   src: "../../../public/assets/fonts/Satoshi-Bold.otf",
@@ -46,7 +47,8 @@ const userNavigation = [
 const Nav = () => {
   const { setSearchOpen } = useSearch();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-
+  const { data: session } = useSession();
+  console.log({ session });
   const { setIsAuthenticated } = useContext(AuthContext);
   return (
     <>
@@ -143,7 +145,7 @@ const Nav = () => {
                 <Menu.Item>
                   <div className="flex items-center mx-[1.5rem] pt-[36px] pb-[26px] mb-[18px] border-b-[1px] border-[#666666] cursor-pointer gap-x-[1.5rem]">
                     <span className="inline-block relative">
-                    <Image
+                      <Image
                         width={50}
                         height={50}
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -173,11 +175,14 @@ const Nav = () => {
                     {
                       ({ active }) => (
                         <>
-                          <Link href={item.href} onClick={()=>{
-                            if(item.name === "Log out"){
-                              setIsAuthenticated(false);
-                            }
-                          }}>
+                          <Link
+                            href={item.href}
+                            onClick={() => {
+                              if (item.name === "Log out") {
+                                setIsAuthenticated(false);
+                              }
+                            }}
+                          >
                             <div
                               className={classNames(
                                 active ? "bg-gray-100" : "",

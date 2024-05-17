@@ -2,6 +2,7 @@
 import { useContext, useEffect } from "react";
 import { redirect } from "next/navigation";
 import { AuthContext } from "@/context/AuthContext";
+import { useSession } from "next-auth/react";
 
 export default function ProtectedRoute({
   children,
@@ -9,14 +10,15 @@ export default function ProtectedRoute({
   children: React.ReactElement;
 }) {
   const { isAuthenticated } = useContext(AuthContext);
+  const { data: session } = useSession();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (session === null) {
       return redirect("/login");
     }
   }, [isAuthenticated]);
 
-  if (!isAuthenticated) {
+  if (session === null) {
     return null;
   }
 
