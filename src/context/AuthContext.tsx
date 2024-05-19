@@ -13,7 +13,7 @@ export function AuthProvider({ children }: any) {
   const axiosAuth = useAxiosAuth();
   const checkAuthState = () => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (isLoggedIn) {
+    if (!isAuthenticated && isLoggedIn) {
       axiosAuth.get(URLConstants.getStatus()).then((res) => {
         console.log({ checkedStatus: res });
         if (res.status === 200) {
