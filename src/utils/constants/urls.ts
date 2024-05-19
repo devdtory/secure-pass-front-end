@@ -3,6 +3,9 @@ export class URLConstants {
   public static readonly login = () => {
     return `${URLConstants.BASE_URL}/auth/login`;
   };
+  public static readonly logout = () => {
+    return `${URLConstants.BASE_URL}/auth/logout`;
+  }
   public static readonly registration = () => {
     return `${URLConstants.BASE_URL}/auth/register`;
   };

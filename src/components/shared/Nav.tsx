@@ -12,6 +12,8 @@ import { AuthContext } from "@/context/AuthContext";
 import { redirect } from "next/navigation";
 import RightPan from "./RightPan";
 import { useSession } from "next-auth/react";
+import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
+import { URLConstants } from "@/utils/constants/urls";
 // Font files can be colocated inside of `pages`
 const satoshi = localFont({
   src: "../../../public/assets/fonts/Satoshi-Bold.otf",
@@ -48,6 +50,7 @@ const Nav = () => {
   const { setSearchOpen } = useSearch();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const { setIsAuthenticated } = useContext(AuthContext);
+  const axiosAuth = useAxiosAuth();
   return (
     <>
       <div
@@ -177,7 +180,18 @@ const Nav = () => {
                             href={item.href}
                             onClick={() => {
                               if (item.name === "Log out") {
-                                setIsAuthenticated(false);
+                                axiosAuth
+                                  .get(URLConstants.logout())
+                                  .then(() => {
+                                    alert("Logged out successfully");
+                                  })
+                                  .catch(() => {
+                                    alert("Something went wrong");
+                                  })
+                                  .finally(() => {
+                                    localStorage.removeItem("isLoggedIn");
+                                    setIsAuthenticated(false);
+                                  });
                               }
                             }}
                           >
