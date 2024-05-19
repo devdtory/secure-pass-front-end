@@ -1,5 +1,5 @@
 export class URLConstants {
-  public static readonly BASE_URL = "http://localhost:5656";
+  public static readonly BASE_URL = "https://secure-password-s5d9.onrender.com";
   public static readonly login = () => {
     return `${URLConstants.BASE_URL}/auth/login`;
   };
