@@ -47,8 +47,6 @@ const userNavigation = [
 const Nav = () => {
   const { setSearchOpen } = useSearch();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-  const { data: session } = useSession();
-  console.log({ session });
   const { setIsAuthenticated } = useContext(AuthContext);
   return (
     <>

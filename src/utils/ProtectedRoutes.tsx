@@ -10,15 +10,14 @@ export default function ProtectedRoute({
   children: React.ReactElement;
 }) {
   const { isAuthenticated } = useContext(AuthContext);
-  const { data: session } = useSession();
 
   useEffect(() => {
-    if (session === null) {
+    if (!isAuthenticated) {
       return redirect("/login");
     }
   }, [isAuthenticated]);
 
-  if (session === null) {
+  if (!isAuthenticated) {
     return null;
   }
 

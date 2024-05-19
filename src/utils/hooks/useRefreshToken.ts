@@ -1,18 +1,20 @@
 "use client";
 
-import { signIn, useSession } from "next-auth/react";
+import { resolve } from "path";
 import { axiosAuth } from "../api/axiosIntance";
+import { rejects } from "assert";
 
 export const useRefreshToken = () => {
-  const { data: session } = useSession();
-
   const refreshToken = async () => {
-    const res = await axiosAuth.post("/auth/refresh", {
-      refresh: session?.user.refreshToken,
-    });
-
-    if (session) session.user.accessToken = res.data.accessToken;
-    else signIn();
+    const res = await axiosAuth.get("/auth/refresh");
+    if (res.status === 200) {
+      console.log("refresh token success");
+      resolve("success");
+    } else {
+      console.log("refresh token failed");
+      Promise.reject("failed");
+    }
+    
   };
   return refreshToken;
 };

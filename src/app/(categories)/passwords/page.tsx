@@ -7,6 +7,8 @@ import Heading from "@/components/shared/Heading";
 import RightPan from "@/components/shared/RightPan";
 import ProtectedRoute from "@/utils/ProtectedRoutes";
 import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -38,7 +40,10 @@ function page() {
     console.log("getPasswords");
     try {
       const resp = await axiosAuth.get("/user/checklist", {
-        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        
+        },
       });
       console.log({ resp });
     } catch (e) {

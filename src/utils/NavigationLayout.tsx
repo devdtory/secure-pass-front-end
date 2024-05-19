@@ -4,14 +4,13 @@ import Nav from "@/components/shared/Nav";
 import SideNavigation from "@/components/shared/SideNavigation";
 import { AuthContext } from "@/context/AuthContext";
 import { SearchProvider } from "@/context/Searchcontext";
-import { useSession } from "next-auth/react";
 import React, { useContext } from "react";
 
 const NavigationLayout = ({ children }: { children: React.ReactNode }) => {
-  const { data: session } = useSession();
+  const { isAuthenticated } = useContext(AuthContext);
   return (
     <>
-      {session ? (
+      {isAuthenticated ? (
         <div className="flex-1">
           <SearchProvider>
             <Nav />

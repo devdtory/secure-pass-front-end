@@ -1,39 +1,49 @@
 "use client";
-import {
-  PrimaryButton,
-  SecondaryButton,
-  TertiaryButton,
-} from "@/components/shared/Buttons";
+import { PrimaryButton, TertiaryButton } from "@/components/shared/Buttons";
 import { AuthContext } from "@/context/AuthContext";
+import { URLConstants } from "@/utils/constants/urls";
+import useAxiosAuth from "@/utils/hooks/useAxiosAuth";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React, { useContext, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const page = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const formRef = React.useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const handleFormSubmit = async (e:any) => {
+  const axiosAuth = useAxiosAuth();
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
     if (!formRef.current) return;
     const formData = new FormData(formRef.current);
     const login_id = formData.get("login_id") as string;
     const password = formData.get("password") as string;
 
-    const responseFromNextAuth = await signIn("credentials", {
-      login_id,
-      password,
-      redirect: false,
-    });
-    console.log("Response in login", responseFromNextAuth);
+    try {
+      const response = await axiosAuth.post(URLConstants.login(), {
+        login_id,
+        password,
+      });
+      console.log({ response });
+      if (response.status === 200) {
+        console.log("Logged in successfully");
+        localStorage.setItem("isLoggedIn", "true");
+        setIsAuthenticated(true);
+      } else {
+        alert("Invalid credentials");
+      }
+    } catch (error) {
+      console.log({ error });
+      alert(error?.response?.data?.message);
+    }
   };
   useEffect(() => {
-    if (session?.user?.accessToken) {
+    if (isAuthenticated) {
       return redirect("/");
     }
-  }, [session?.user]);
+  }, [isAuthenticated]);
 
   return (
     <div className="w-full h-screen max-h screen max-w-screen bg-[#EFEFEF] flex ">

@@ -1,20 +1,15 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { useRefreshToken } from "./useRefreshToken";
 import { axiosAuth } from "../api/axiosIntance";
+import { useRefreshToken } from "./useRefreshToken";
 
 const useAxiosAuth = () => {
-  const { data: session } = useSession();
   const refreshToken = useRefreshToken();
 
   useEffect(() => {
     const requestIntercept = axiosAuth.interceptors.request.use(
       (config) => {
-        // if (!config.headers["Authorization"]) {
-        //   config.headers["Authorization"] = `Bearer ${session?.user?.accessToken}`;
-        // }
         return config;
       },
       (error) => Promise.reject(error)
@@ -23,11 +18,16 @@ const useAxiosAuth = () => {
     const responseIntercept = axiosAuth.interceptors.response.use(
       (response) => response,
       async (error) => {
+        console.log("error in interceptor", error);
         const prevRequest = error?.config;
-        if (error?.response?.status === 401 && !prevRequest?.sent) {
+        if (error?.response?.status === 403 && !prevRequest?.sent) {
+          console.log("401 error in interceptor");
           prevRequest.sent = true;
-          await refreshToken();
-          prevRequest.headers["Authorization"] = `Bearer ${session?.user.accessToken}`;
+          try {
+            await refreshToken();
+          } catch (e) {
+            return Promise.reject(error);
+          }
           return axiosAuth(prevRequest);
         }
         return Promise.reject(error);
@@ -38,7 +38,7 @@ const useAxiosAuth = () => {
       axiosAuth.interceptors.request.eject(requestIntercept);
       axiosAuth.interceptors.response.eject(responseIntercept);
     };
-  }, [session, refreshToken]);
+  }, []);
 
   return axiosAuth;
 };
